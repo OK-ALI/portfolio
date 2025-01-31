@@ -1,0 +1,1325 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="{{project.meta.ogDescription}}">
+      <meta name="theme-color" content="#ffffff">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="robots" content="{{project.meta.robotsMeta}}">
+      
+       <title>{{project.seoTitle}}</title>
+      <!-- SEO Description -->
+      <meta name="description" content="{{project.seoDescription}}">
+      <!-- Performance optimization: Preload critical resources -->
+      <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+      <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" as="style">
+      
+      <!-- {headerScripts} -->
+
+      <!-- Core CSS -->
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+             colors: {
+                primary: {
+                  50: '#f8f8f8',
+                  100: '#e8e8e8',
+                  200: '#d3d3d3',
+                  300: '#a3a3a3',
+                  400: '#737373',
+                  500: '#525252',
+                  600: '#404040',
+                  700: '#262626',
+                  800: '#171717',
+                  900: '#0a0a0a',
+                  950: '#030303',
+                },
+                secondary: {
+                  50: '#f8f8f8',
+                  100: '#e8e8e8',
+                  200: '#d3d3d3',
+                  300: '#a3a3a3',
+                  400: '#737373',
+                  500: '#525252',
+                  600: '#404040',
+                  700: '#262626',
+                  800: '#171717',
+                  900: '#0a0a0a',
+                  950: '#030303',
+                },
+                accent: {
+                  50: '#f8f8f8',
+                  100: '#e8e8e8',
+                  200: '#d3d3d3',
+                  300: '#a3a3a3',
+                  400: '#737373',
+                  500: '#525252',
+                  600: '#404040',
+                  700: '#262626',
+                  800: '#171717',
+                  900: '#0a0a0a',
+                  950: '#030303',
+                },
+              },
+              fontFamily: {
+                sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                heading: ['Montserrat', 'Inter', 'system-ui', 'sans-serif'],
+              },
+              spacing: {
+                '18': '4.5rem',
+                '22': '5.5rem',
+                '30': '7.5rem',
+              },
+              maxWidth: {
+                '8xl': '88rem',
+                '9xl': '96rem',
+              },
+              animation: {
+                'fade-in': 'fadeIn 0.5s ease-in',
+                'fade-out': 'fadeOut 0.5s ease-out',
+                'slide-up': 'slideUp 0.5s ease-out',
+                'slide-down': 'slideDown 0.5s ease-out',
+                'slide-left': 'slideLeft 0.5s ease-out',
+                'slide-right': 'slideRight 0.5s ease-out',
+                'scale-in': 'scaleIn 0.5s ease-out',
+                'scale-out': 'scaleOut 0.5s ease-out',
+                'spin-slow': 'spin 3s linear infinite',
+                'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                'bounce-slow': 'bounce 3s infinite',
+                'float': 'float 3s ease-in-out infinite',
+              },
+              keyframes: {
+                fadeIn: {
+                  '0%': { opacity: '0' },
+                  '100%': { opacity: '1' },
+                },
+                fadeOut: {
+                  '0%': { opacity: '1' },
+                  '100%': { opacity: '0' },
+                },
+                slideUp: {
+                  '0%': { transform: 'translateY(20px)', opacity: '0' },
+                  '100%': { transform: 'translateY(0)', opacity: '1' },
+                },
+                slideDown: {
+                  '0%': { transform: 'translateY(-20px)', opacity: '0' },
+                  '100%': { transform: 'translateY(0)', opacity: '1' },
+                },
+                slideLeft: {
+                  '0%': { transform: 'translateX(20px)', opacity: '0' },
+                  '100%': { transform: 'translateX(0)', opacity: '1' },
+                },
+                slideRight: {
+                  '0%': { transform: 'translateX(-20px)', opacity: '0' },
+                  '100%': { transform: 'translateX(0)', opacity: '1' },
+                },
+                scaleIn: {
+                  '0%': { transform: 'scale(0.9)', opacity: '0' },
+                  '100%': { transform: 'scale(1)', opacity: '1' },
+                },
+                scaleOut: {
+                  '0%': { transform: 'scale(1.1)', opacity: '0' },
+                  '100%': { transform: 'scale(1)', opacity: '1' },
+                },
+                float: {
+                  '0%, 100%': { transform: 'translateY(0)' },
+                  '50%': { transform: 'translateY(-10px)' },
+                },
+              },
+              aspectRatio: {
+                'portrait': '3/4',
+                'landscape': '4/3',
+                'ultrawide': '21/9',
+              },
+            },
+          },
+          variants: {
+            extend: {
+              opacity: ['disabled'],
+              cursor: ['disabled'],
+              backgroundColor: ['active', 'disabled'],
+              textColor: ['active', 'disabled'],
+            },
+          },
+        }
+      </script>
+
+      <!-- Utilities and Components -->
+      <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js"></script>
+      <script defer src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.1/apexcharts.min.js"></script>
+      
+      <!-- Optimized Font Loading -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+      
+      <!-- Icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+      <!-- Dynamic Meta Tags -->
+      <meta name="description" content="{{project.meta.ogDescription}}">
+      <meta name="keywords" content="{{project.meta.keywords}}">
+      <meta name="robots" content="{{project.meta.robotsMeta}}">
+      <meta name="google-site-verification" content="{{project.meta.googleVerification}}">
+      <meta name="baidu-verification" content="{{project.meta.baiduVerification}}">
+      <meta name="yandex-verification" content="{{project.meta.yandexVerification}}">
+      <meta name="bing-verification" content="{{project.meta.bingVerification}}">
+      <meta property="og:title" content="{{project.meta.ogTitle}}">
+      <meta property="og:description" content="{{project.meta.ogDescription}}">
+      <meta property="og:image" content="{{project.meta.ogImage}}">
+      <meta property="og:type" content="website">
+      <meta property="og:locale" content="en_US">
+      <meta property="og:site_name" content="{{project.name}}">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="{{project.meta.ogTitle}}">
+      <meta name="twitter:description" content="{{project.meta.ogDescription}}">
+      <meta name="twitter:image" content="{{project.meta.ogImage}}">
+
+      <!-- Base Styles -->
+      <style>
+      * {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* Webkit browsers like Chrome, Safari, newer Edge */
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+          width: 0px;
+        }
+        
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+          background: #888;
+          border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+          background: #666;
+        }
+
+        /* Remove tap highlight on mobile */
+        * {
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Improve text rendering */
+        body {
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Focus outline styles */
+        :focus-visible {
+          outline: 2px solid currentColor;
+          outline-offset: 2px;
+        }
+
+        /* Print styles */
+        @media print {
+          .no-print {
+            display: none !important;
+          }
+          
+          a[href]:after {
+            content: " (" attr(href) ")";
+          }
+        }
+      </style>
+
+      <!-- Enhanced Image Handler -->
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                  const tempImage = new Image();
+                  tempImage.onload = () => {
+                    img.src = img.dataset.src;
+                    img.classList.remove('opacity-0');
+                    img.classList.add('opacity-100');
+                  };
+                  tempImage.src = img.dataset.src;
+                  img.removeAttribute('data-src');
+                  observer.unobserve(img);
+                }
+              }
+            });
+          }, {
+            rootMargin: '50px 0px',
+            threshold: 0.01
+          });
+
+          const loadImage = (img) => {
+            if ('loading' in HTMLImageElement.prototype) {
+              img.loading = 'lazy';
+            }
+            
+            img.classList.add('transition-opacity', 'duration-300', 'opacity-0');
+            
+            img.onerror = () => {
+              const width = img.getAttribute('width') || img.clientWidth || 300;
+              const height = img.getAttribute('height') || img.clientHeight || 200;
+              img.src = `https://placehold.co/${width}x${height}/DEDEDE/555555?text=Image+Unavailable`;
+              img.alt = 'Image unavailable';
+              img.classList.remove('opacity-0');
+              img.classList.add('opacity-100', 'error-image');
+            };
+
+            if (img.dataset.src) {
+              imageObserver.observe(img);
+            } else {
+              img.classList.remove('opacity-0');
+              img.classList.add('opacity-100');
+            }
+          };
+
+          document.querySelectorAll('img[data-src], img:not([data-src])').forEach(loadImage);
+
+          // Watch for dynamically added images
+          new MutationObserver((mutations) => {
+            mutations.forEach(mutation => {
+              mutation.addedNodes.forEach(node => {
+                if (node.nodeType === 1) {
+                  if (node.tagName === 'IMG') {
+                    loadImage(node);
+                  }
+                  node.querySelectorAll('img').forEach(loadImage);
+                }
+              });
+            });
+          }).observe(document.body, {
+            childList: true,
+            subtree: true
+          });
+        });
+
+        // Performance monitoring
+        if ('performance' in window && 'PerformanceObserver' in window) {
+          // Create performance observer
+          const observer = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            entries.forEach((entry) => {
+              if (entry.entryType === 'largest-contentful-paint') {
+                // console.log(`LCP: ${entry.startTime}ms`);
+              }
+              if (entry.entryType === 'first-input') {
+                // console.log(`FID: ${entry.processingStart - entry.startTime}ms`);
+              }
+              if (entry.entryType === 'layout-shift') {
+                // console.log(`CLS: ${entry.value}`);
+              }
+            });
+          });
+
+          // Observe performance metrics
+          observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
+
+          // Log basic performance metrics
+          window.addEventListener('load', () => {
+            const timing = performance.getEntriesByType('navigation')[0];
+            console.log({
+              'DNS Lookup': timing.domainLookupEnd - timing.domainLookupStart,
+              'TCP Connection': timing.connectEnd - timing.connectStart,
+              'DOM Content Loaded': timing.domContentLoadedEventEnd - timing.navigationStart,
+              'Page Load': timing.loadEventEnd - timing.navigationStart
+            });
+          });
+        }
+
+        // Handle offline/online status
+        window.addEventListener('online', () => {
+          document.body.classList.remove('offline');
+          console.log('Connection restored');
+        });
+        
+        window.addEventListener('offline', () => {
+          document.body.classList.add('offline');
+          console.log('Connection lost');
+        });
+      </script>
+   </head>
+   <body class="antialiased text-gray-800 min-h-screen flex flex-col">
+      <!-- Skip to main content link for accessibility -->
+      <a href="#main-content" 
+         class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-white focus:text-black">
+         Skip to main content
+      </a>
+
+      <!-- Header -->
+      <header class="relative z-50 bg-white dark:bg-gray-900">
+        <!-- Header content goes here -->
+      </header>
+
+      <!-- Main content area -->
+      <main id="main-content" class="flex-1 relative ">
+        <!-- Content will be injected here -->
+      </main>
+
+      <!-- {bodyScripts} -->
+
+   </body>
+</html><element id="6ec92e69-fb64-42db-8876-a3f06695189a" data-section-id="6ec92e69-fb64-42db-8876-a3f06695189a">
+
+<htmlCode>
+<div id="root">
+  <nav id="navbar" class="fixed w-full bg-neutral-900 text-white z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex-shrink-0 animate__animated animate__fadeIn">
+          <a href="#" class="text-xl font-bold">Portfolio</a>
+        </div>
+        
+        <div class="hidden md:block animate__animated animate__fadeIn">
+          <div class="ml-10 flex items-center space-x-4">
+            <a href="#hero" class="hover:text-blue-500 px-3 py-2 transition duration-300">Home</a>
+            <a href="#projects" class="hover:text-blue-500 px-3 py-2 transition duration-300">Projects</a>
+            <a href="#blogs" class="hover:text-blue-500 px-3 py-2 transition duration-300">Blogs</a>
+            <a href="#about" class="hover:text-blue-500 px-3 py-2 transition duration-300">About</a>
+            <a href="#contact" class="hover:text-blue-500 px-3 py-2 transition duration-300">Contact</a>
+            <a href="#" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md transition duration-300">Resume</a>
+          </div>
+        </div>
+
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-white hover:text-gray-300 focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-neutral-900">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="#hero" class="block px-3 py-2 hover:text-blue-500 transition duration-300">Home</a>
+        <a href="#projects" class="block px-3 py-2 hover:text-blue-500 transition duration-300">Projects</a>
+        <a href="#blogs" class="block px-3 py-2 hover:text-blue-500 transition duration-300">Blogs</a>
+        <a href="#about" class="block px-3 py-2 hover:text-blue-500 transition duration-300">About</a>
+        <a href="#contact" class="block px-3 py-2 hover:text-blue-500 transition duration-300">Contact</a>
+        <a href="#" class="block px-3 py-2 text-blue-600 hover:text-blue-700 transition duration-300">Resume</a>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu.getElementsByTagName('a');
+    for (let link of mobileLinks) {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    }
+  </script>
+</div>
+</htmlCode></element><element id="bc498cac-bf97-434a-a94d-8536ee96a8f7" data-section-id="bc498cac-bf97-434a-a94d-8536ee96a8f7">
+
+<htmlCode>
+<div id="root">
+  <section id="hero" class="min-h-[70vh] bg-neutral-900 text-white flex items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div class="animate__animated animate__fadeInLeft">
+          <h1 class="text-4xl md:text-6xl font-bold mb-4">
+            Hi, I'm <span class="text-blue-500">Ali Adil</span>
+          </h1>
+          <h2 class="text-xl md:text-2xl text-gray-400 mb-6">
+            Artificial Intelligence Student & Developer
+          </h2>
+          <p class="text-gray-300 mb-8">
+            Passionate about machine learning, data science, and creating intelligent solutions. Currently pursuing BS in Artificial Intelligence.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#projects" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-md transition duration-300">
+              View Projects
+            </a>
+            <a href="#contact" class="border border-blue-500 hover:bg-blue-500 px-6 py-3 rounded-md transition duration-300">
+              Contact Me
+            </a>
+          </div>
+        </div>
+        
+        <div class="animate__animated animate__fadeInRight">
+          <div class="relative">
+            <div class="w-full h-80 md:h-96 bg-blue-500/10 rounded-lg flex items-center justify-center">
+              <div class="text-6xl">
+                <div class="typing-animation">
+                  <span class="text-blue-500">&lt;</span>
+                  <span class="text-white">AI</span>
+                  <span class="text-blue-500">/&gt;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    
+    .typing-animation {
+      overflow: hidden;
+      white-space: nowrap;
+      animation: typing 3s steps(30, end) infinite;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const heroSection = document.getElementById('hero');
+      heroSection.classList.add('animate__animated', 'animate__fadeIn');
+    });
+  </script>
+</div>
+</htmlCode></element><element id="321f351c-4ffc-4c0e-94b5-d0c124b45244" data-section-id="321f351c-4ffc-4c0e-94b5-d0c124b45244">
+
+<htmlCode>
+<div id="root">
+  <section id="projects" class="py-20 bg-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 animate__animated animate__fadeIn">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Featured Projects</h2>
+        <p class="text-gray-400">Showcasing my work in AI and Machine Learning</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project Card 1 -->
+        <div class="bg-neutral-900 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:transform hover:scale-105 animate__animated animate__fadeInUp">
+          <div class="h-48 bg-neutral-700 flex items-center justify-center">
+            <span class="text-4xl text-blue-500">AI</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-white mb-2">Machine Learning Model</h3>
+            <p class="text-gray-400 mb-4">A deep learning model for image classification using TensorFlow</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">Python</span>
+              <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">TensorFlow</span>
+              <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">CNN</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <a href="#" class="text-blue-500 hover:text-blue-400 transition duration-300">View Project</a>
+              <a href="#" class="text-blue-500 hover:text-blue-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="bg-neutral-900 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:transform hover:scale-105 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+          <div class="h-48 bg-neutral-700 flex items-center justify-center">
+            <span class="text-4xl text-blue-500">NLP</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-white mb-2">Natural Language Processing</h3>
+            <p class="text-gray-400 mb-4">Sentiment analysis system using BERT</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">Python</span>
+              <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">BERT</span>
+              <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">NLP</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <a href="#" class="text-blue-500 hover:text-blue-400 transition duration-300">View Project</a>
+              <a href="#" class="text-blue-500 hover:text-blue-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="bg-neutral-900 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:transform hover:scale-105 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+          <div class="h-48 bg-neutral-700 flex items-center justify-center">
+            <span class="text-4xl text-blue-500">CV</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-white mb-2">Computer Vision Project</h3>
+            <p class="text-gray-400 mb-4">Object detection system using YOLO</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">Python</span>
+              <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">YOLO</span>
+              <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">OpenCV</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <a href="#" class="text-blue-500 hover:text-blue-400 transition duration-300">View Project</a>
+              <a href="#" class="text-blue-500 hover:text-blue-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md transition duration-300">
+          View All Projects
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const projectCards = document.querySelectorAll('#projects .animate__animated');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.visibility = 'visible';
+            entry.target.classList.add('animate__fadeInUp');
+          }
+        });
+      });
+
+      projectCards.forEach(card => {
+        card.style.visibility = 'hidden';
+        observer.observe(card);
+      });
+    });
+  </script>
+</div>
+</htmlCode></element><element id="a2b24f1a-b20c-4f58-b147-9aa9c6134775" data-section-id="a2b24f1a-b20c-4f58-b147-9aa9c6134775">
+
+<htmlCode>
+<div id="root">
+  <section id="skills" class="py-20 bg-neutral-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 animate__animated animate__fadeIn">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Technical Skills</h2>
+        <p class="text-gray-400">Expertise in AI and Development Technologies</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- AI & ML Skills -->
+        <div class="bg-neutral-800 p-6 rounded-lg animate__animated animate__fadeInLeft">
+          <h3 class="text-xl font-semibold text-white mb-6">AI & Machine Learning</h3>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-gray-300">TensorFlow/Keras</span>
+                <span class="text-blue-500">90%</span>
+              </div>
+              <div class="w-full bg-neutral-700 rounded-full h-2">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-gray-300">PyTorch</span>
+                <span class="text-blue-500">85%</span>
+              </div>
+              <div class="w-full bg-neutral-700 rounded-full h-2">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-gray-300">Computer Vision</span>
+                <span class="text-blue-500">80%</span>
+              </div>
+              <div class="w-full bg-neutral-700 rounded-full h-2">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 80%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-gray-300">Natural Language Processing</span>
+                <span class="text-blue-500">75%</span>
+              </div>
+              <div class="w-full bg-neutral-700 rounded-full h-2">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Programming Skills -->
+        <div class="bg-neutral-800 p-6 rounded-lg animate__animated animate__fadeInRight">
+          <h3 class="text-xl font-semibold text-white mb-6">Programming & Tools</h3>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-gray-300">Python</span>
+                <span class="text-blue-500">95%</span>
+              </div>
+              <div class="w-full bg-neutral-700 rounded-full h-2">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 95%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-gray-300">SQL</span>
+                <span class="text-blue-500">80%</span>
+              </div>
+              <div class="w-full bg-neutral-700 rounded-full h-2">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 80%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-gray-300">Git & Version Control</span>
+                <span class="text-blue-500">85%</span>
+              </div>
+              <div class="w-full bg-neutral-700 rounded-full h-2">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-gray-300">Docker</span>
+                <span class="text-blue-500">70%</span>
+              </div>
+              <div class="w-full bg-neutral-700 rounded-full h-2">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: 70%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Skills -->
+      <div class="mt-8 bg-neutral-800 p-6 rounded-lg animate__animated animate__fadeInUp">
+        <h3 class="text-xl font-semibold text-white mb-6">Additional Skills</h3>
+        <div class="flex flex-wrap gap-3">
+          <span class="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full">Data Visualization</span>
+          <span class="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full">Scikit-learn</span>
+          <span class="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full">Pandas</span>
+          <span class="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full">NumPy</span>
+          <span class="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full">OpenCV</span>
+          <span class="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full">NLTK</span>
+          <span class="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full">SpaCy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const skillElements = document.querySelectorAll('#skills .animate__animated');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.visibility = 'visible';
+            entry.target.classList.add(entry.target.classList.contains('animate__fadeInLeft') ? 'animate__fadeInLeft' : 
+                                     entry.target.classList.contains('animate__fadeInRight') ? 'animate__fadeInRight' : 
+                                     'animate__fadeInUp');
+          }
+        });
+      });
+
+      skillElements.forEach(element => {
+        element.style.visibility = 'hidden';
+        observer.observe(element);
+      });
+    });
+  </script>
+</div>
+</htmlCode></element><element id="dbf525ae-a6de-452b-bd1b-892f1d08c25a" data-section-id="dbf525ae-a6de-452b-bd1b-892f1d08c25a">
+
+<htmlCode>
+<div id="root">
+  <section id="experience" class="py-20 bg-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 animate__animated animate__fadeIn">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Experience</h2>
+        <p class="text-gray-400">Professional Journey in AI and Development</p>
+      </div>
+
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-blue-500"></div>
+
+        <!-- Experience Items -->
+        <div class="space-y-12">
+          <!-- Experience 1 -->
+          <div class="relative flex items-center justify-between animate__animated animate__fadeInLeft">
+            <div class="w-5/12 pr-8 text-right">
+              <h3 class="text-xl font-semibold text-white">Machine Learning Intern</h3>
+              <p class="text-blue-500">TechCorp AI</p>
+              <p class="text-gray-400">Jun 2023 - Present</p>
+            </div>
+            
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-neutral-800"></div>
+            
+            <div class="w-5/12 pl-8">
+              <p class="text-gray-300">
+                • Developed and implemented ML models for data analysis<br>
+                • Collaborated with senior data scientists on research projects<br>
+                • Optimized existing algorithms improving performance by 30%
+              </p>
+            </div>
+          </div>
+
+          <!-- Experience 2 -->
+          <div class="relative flex items-center justify-between animate__animated animate__fadeInRight">
+            <div class="w-5/12 pr-8 text-right">
+              <p class="text-gray-300">
+                • Led a team of 3 in developing an NLP-based chatbot<br>
+                • Implemented deep learning models using PyTorch<br>
+                • Achieved 95% accuracy in sentiment analysis tasks
+              </p>
+            </div>
+            
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-neutral-800"></div>
+            
+            <div class="w-5/12 pl-8">
+              <h3 class="text-xl font-semibold text-white">Research Assistant</h3>
+              <p class="text-blue-500">University AI Lab</p>
+              <p class="text-gray-400">Jan 2023 - May 2023</p>
+            </div>
+          </div>
+
+          <!-- Experience 3 -->
+          <div class="relative flex items-center justify-between animate__animated animate__fadeInLeft">
+            <div class="w-5/12 pr-8 text-right">
+              <h3 class="text-xl font-semibold text-white">AI Project Contributor</h3>
+              <p class="text-blue-500">Open Source AI Initiative</p>
+              <p class="text-gray-400">Sep 2022 - Dec 2022</p>
+            </div>
+            
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-neutral-800"></div>
+            
+            <div class="w-5/12 pl-8">
+              <p class="text-gray-300">
+                • Contributed to open-source computer vision projects<br>
+                • Implemented feature detection algorithms<br>
+                • Created documentation and tutorials for community
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const experienceItems = document.querySelectorAll('#experience .animate__animated');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.visibility = 'visible';
+            entry.target.classList.add(
+              entry.target.classList.contains('animate__fadeInLeft') ? 'animate__fadeInLeft' : 'animate__fadeInRight'
+            );
+          }
+        });
+      }, {
+        threshold: 0.2
+      });
+
+      experienceItems.forEach(item => {
+        item.style.visibility = 'hidden';
+        observer.observe(item);
+      });
+    });
+  </script>
+</div>
+</htmlCode></element><element id="58876e2d-35c8-45ed-90e3-aa6b83de2f30" data-section-id="58876e2d-35c8-45ed-90e3-aa6b83de2f30">
+
+<htmlCode>
+<div id="root">
+  <section id="blogs" class="py-20 bg-neutral-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 animate__animated animate__fadeIn">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Latest Blog Posts</h2>
+        <p class="text-gray-400">Insights and Experiences in AI Development</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Blog Post 1 -->
+        <article class="bg-neutral-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:transform hover:scale-105 animate__animated animate__fadeInUp">
+          <div class="h-48 bg-neutral-700 flex items-center justify-center">
+            <span class="text-4xl text-blue-500">AI</span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <span class="text-sm text-blue-500">Machine Learning</span>
+              <span class="mx-2 text-gray-500">•</span>
+              <span class="text-sm text-gray-400">5 min read</span>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-3">Understanding Neural Networks: A Beginner's Guide</h3>
+            <p class="text-gray-400 mb-4 line-clamp-2">An introduction to neural networks and their applications in modern AI systems...</p>
+            <a href="#" class="text-blue-500 hover:text-blue-400 inline-flex items-center">
+              Read More
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Blog Post 2 -->
+        <article class="bg-neutral-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:transform hover:scale-105 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+          <div class="h-48 bg-neutral-700 flex items-center justify-center">
+            <span class="text-4xl text-blue-500">ML</span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <span class="text-sm text-blue-500">Deep Learning</span>
+              <span class="mx-2 text-gray-500">•</span>
+              <span class="text-sm text-gray-400">8 min read</span>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-3">Advanced CNN Architectures Explained</h3>
+            <p class="text-gray-400 mb-4 line-clamp-2">Diving deep into modern CNN architectures and their implementations...</p>
+            <a href="#" class="text-blue-500 hover:text-blue-400 inline-flex items-center">
+              Read More
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Blog Post 3 -->
+        <article class="bg-neutral-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:transform hover:scale-105 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+          <div class="h-48 bg-neutral-700 flex items-center justify-center">
+            <span class="text-4xl text-blue-500">DL</span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <span class="text-sm text-blue-500">AI Ethics</span>
+              <span class="mx-2 text-gray-500">•</span>
+              <span class="text-sm text-gray-400">6 min read</span>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-3">Ethics in Artificial Intelligence</h3>
+            <p class="text-gray-400 mb-4 line-clamp-2">Exploring the ethical considerations in AI development and deployment...</p>
+            <a href="#" class="text-blue-500 hover:text-blue-400 inline-flex items-center">
+              Read More
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md transition duration-300">
+          View All Posts
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const blogPosts = document.querySelectorAll('#blogs .animate__animated');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.visibility = 'visible';
+            entry.target.classList.add('animate__fadeInUp');
+          }
+        });
+      });
+
+      blogPosts.forEach(post => {
+        post.style.visibility = 'hidden';
+        observer.observe(post);
+      });
+    });
+  </script>
+</div>
+</htmlCode></element><element id="84aba45b-bf70-4195-be48-95334d340d25" data-section-id="84aba45b-bf70-4195-be48-95334d340d25">
+
+<htmlCode>
+<div id="root">
+  <section id="about" class="py-20 bg-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Profile Info -->
+        <div class="animate__animated animate__fadeInLeft">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">About Me</h2>
+          <div class="space-y-4 text-gray-300">
+            <p class="leading-relaxed">
+              Hi, I'm John Doe, a passionate BS Artificial Intelligence student with a keen interest in machine learning and deep learning technologies. Currently in my final year at Tech University.
+            </p>
+            <p class="leading-relaxed">
+              My journey in AI began with a fascination for how machines can learn and make decisions. Today, I specialize in developing intelligent systems that can solve real-world problems.
+            </p>
+            <p class="leading-relaxed">
+              When I'm not coding or training models, I'm either writing technical blogs or contributing to open-source AI projects.
+            </p>
+          </div>
+
+          <div class="mt-8 space-y-4">
+            <div class="flex items-center text-gray-300">
+              <svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>BS Artificial Intelligence - Tech University</span>
+            </div>
+            <div class="flex items-center text-gray-300">
+              <svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>San Francisco, CA</span>
+            </div>
+            <div class="flex items-center text-gray-300">
+              <svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>john.doe@example.com</span>
+            </div>
+          </div>
+
+          <div class="mt-8 flex space-x-4">
+            <a href="#" class="text-blue-500 hover:text-blue-400 transition duration-300">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-blue-500 hover:text-blue-400 transition duration-300">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-blue-500 hover:text-blue-400 transition duration-300">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Education & Certifications -->
+        <div class="animate__animated animate__fadeInRight">
+          <div class="bg-neutral-900 p-6 rounded-lg mb-6">
+            <h3 class="text-xl font-semibold text-white mb-4">Education</h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="text-lg text-blue-500">BS Artificial Intelligence</h4>
+                <p class="text-gray-300">Tech University</p>
+                <p class="text-gray-400">2020 - Present</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-neutral-900 p-6 rounded-lg">
+            <h3 class="text-xl font-semibold text-white mb-4">Certifications</h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="text-lg text-blue-500">Deep Learning Specialization</h4>
+                <p class="text-gray-300">Coursera</p>
+                <p class="text-gray-400">2022</p>
+              </div>
+              <div>
+                <h4 class="text-lg text-blue-500">TensorFlow Developer Certificate</h4>
+                <p class="text-gray-300">Google</p>
+                <p class="text-gray-400">2023</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const elements = document.querySelectorAll('#about .animate__animated');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.visibility = 'visible';
+            entry.target.classList.add(
+              entry.target.classList.contains('animate__fadeInLeft') ? 'animate__fadeInLeft' : 'animate__fadeInRight'
+            );
+          }
+        });
+      });
+
+      elements.forEach(element => {
+        element.style.visibility = 'hidden';
+        observer.observe(element);
+      });
+    });
+  </script>
+</div>
+</htmlCode></element><element id="dc167b4a-8c90-41a3-8478-b664e2f86a2f" data-section-id="dc167b4a-8c90-41a3-8478-b664e2f86a2f">
+
+<htmlCode>
+<div id="root">
+  <section id="contact" class="py-20 bg-neutral-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 animate__animated animate__fadeIn">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Get In Touch</h2>
+        <p class="text-gray-400">Let's discuss your project or just say hello</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- Contact Info -->
+        <div class="animate__animated animate__fadeInLeft">
+          <div class="bg-neutral-800 p-8 rounded-lg">
+            <div class="space-y-8">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <div class="p-4 bg-blue-500/10 rounded-lg">
+                    <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-xl font-semibold text-white mb-2">Email</h3>
+                  <p class="text-gray-400">john.doe@example.com</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <div class="p-4 bg-blue-500/10 rounded-lg">
+                    <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-xl font-semibold text-white mb-2">Location</h3>
+                  <p class="text-gray-400">San Francisco, CA</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <div class="p-4 bg-blue-500/10 rounded-lg">
+                    <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-xl font-semibold text-white mb-2">Social</h3>
+                  <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300">
+                      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                      </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300">
+                      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                      </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300">
+                      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="animate__animated animate__fadeInRight">
+          <form class="bg-neutral-800 p-8 rounded-lg">
+            <div class="mb-6">
+              <label for="name" class="block text-gray-400 mb-2">Name</label>
+              <input type="text" id="name" class="w-full px-4 py-3 bg-neutral-700 border border-neutral-600 rounded-lg focus:outline-none focus:border-blue-500 text-white" required>
+            </div>
+            <div class="mb-6">
+              <label for="email" class="block text-gray-400 mb-2">Email</label>
+              <input type="email" id="email" class="w-full px-4 py-3 bg-neutral-700 border border-neutral-600 rounded-lg focus:outline-none focus:border-blue-500 text-white" required>
+            </div>
+            <div class="mb-6">
+              <label for="subject" class="block text-gray-400 mb-2">Subject</label>
+              <input type="text" id="subject" class="w-full px-4 py-3 bg-neutral-700 border border-neutral-600 rounded-lg focus:outline-none focus:border-blue-500 text-white" required>
+            </div>
+            <div class="mb-6">
+              <label for="message" class="block text-gray-400 mb-2">Message</label>
+              <textarea id="message" rows="4" class="w-full px-4 py-3 bg-neutral-700 border border-neutral-600 rounded-lg focus:outline-none focus:border-blue-500 text-white" required></textarea>
+            </div>
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg transition duration-300">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const elements = document.querySelectorAll('#contact .animate__animated');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.visibility = 'visible';
+            entry.target.classList.add(
+              entry.target.classList.contains('animate__fadeInLeft') ? 'animate__fadeInLeft' : 
+              entry.target.classList.contains('animate__fadeInRight') ? 'animate__fadeInRight' : 
+              'animate__fadeIn'
+            );
+          }
+        });
+      });
+
+      elements.forEach(element => {
+        element.style.visibility = 'hidden';
+        observer.observe(element);
+      });
+
+      // Form validation and submission
+      const form = document.querySelector('form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Add your form submission logic here
+        alert('Thank you for your message! I will get back to you soon.');
+        form.reset();
+      });
+    });
+  </script>
+</div>
+</htmlCode></element><element id="ee9512ac-46c1-4506-88f0-0f395ce0ce6a" data-section-id="ee9512ac-46c1-4506-88f0-0f395ce0ce6a">
+
+<htmlCode>
+<div id="root">
+  <footer id="footer" class="bg-neutral-900 pt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8 pb-8 border-b border-neutral-800">
+        <!-- Brand -->
+        <div class="animate__animated animate__fadeIn">
+          <h3 class="text-2xl font-bold text-white mb-4">John Doe</h3>
+          <p class="text-gray-400">AI Student & Developer</p>
+          <p class="text-gray-400 mt-2">Building intelligent solutions for tomorrow</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="animate__animated animate__fadeIn">
+          <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="#hero" class="text-gray-400 hover:text-blue-500 transition duration-300">Home</a></li>
+            <li><a href="#projects" class="text-gray-400 hover:text-blue-500 transition duration-300">Projects</a></li>
+            <li><a href="#blogs" class="text-gray-400 hover:text-blue-500 transition duration-300">Blogs</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-blue-500 transition duration-300">About</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-blue-500 transition duration-300">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="animate__animated animate__fadeIn">
+          <h4 class="text-lg font-semibold text-white mb-4">Contact Info</h4>
+          <ul class="space-y-2">
+            <li class="text-gray-400">
+              <span class="text-blue-500 mr-2">Email:</span>
+              john.doe@example.com
+            </li>
+            <li class="text-gray-400">
+              <span class="text-blue-500 mr-2">Location:</span>
+              San Francisco, CA
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Links -->
+        <div class="animate__animated animate__fadeIn">
+          <h4 class="text-lg font-semibold text-white mb-4">Follow Me</h4>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="pt-8 text-center">
+        <p class="text-gray-400">© 2024 John Doe. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const elements = document.querySelectorAll('#footer .animate__animated');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.visibility = 'visible';
+            entry.target.classList.add('animate__fadeIn');
+          }
+        });
+      });
+
+      elements.forEach(element => {
+        element.style.visibility = 'hidden';
+        observer.observe(element);
+      });
+    });
+  </script>
+</div>
+</htmlCode></element>
+            <div id="page_complete">
+            <script>
+                console.log('Page complete');
+            </script>
+            </body>
+            </html>
+          
