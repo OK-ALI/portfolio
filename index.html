@@ -132,6 +132,10 @@ section{padding:8rem 5rem;}
 .prow::before{content:'';position:absolute;inset:0;background:var(--sand2);border-radius:16px;transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.16,1,.3,1);z-index:-1;}
 .prow:hover::before{transform:scaleX(1);}
 .prow:hover{padding-left:2rem;}
+.prow.featured{border-left:2.5px solid var(--acc2);padding-left:1.6rem;}
+.prow.featured:hover{padding-left:2.4rem;}
+.prow.featured .pnum{color:var(--acc2);}
+.fbadge{display:inline-flex;align-items:center;font-family:var(--pally);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--acc2);color:var(--inv);padding:.2rem .65rem;border-radius:100px;margin-bottom:.5rem;opacity:.9;}
 .pnum{font-family:var(--bebas);font-size:1.1rem;color:var(--muted);letter-spacing:.06em;}
 .pname{font-family:var(--clash);font-size:1.65rem;font-weight:700;color:var(--ink);line-height:1;margin-bottom:.5rem;transition:color .2s;letter-spacing:.01em;}
 .prow:hover .pname{color:var(--acc);}
@@ -140,6 +144,8 @@ section{padding:8rem 5rem;}
 .ptag{font-family:var(--pally);font-size:.65rem;letter-spacing:.05em;font-weight:700;padding:.22rem .68rem;border-radius:100px;background:var(--sand2);color:var(--muted);border:1px solid var(--sand3);}
 .parr{font-size:1.3rem;color:var(--muted);transition:all .3s;justify-self:center;}
 .prow:hover .parr{color:var(--acc);transform:translate(4px,-4px);}
+.other-ph{display:flex;align-items:flex-end;justify-content:space-between;margin-top:5rem;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;}
+.other-ph .s-label{margin-bottom:0;}
 
 /* EDUCATION */
 #edu{background:var(--ink);}
@@ -236,6 +242,7 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1rem;">
+    <a class="pill" href="assets/Ali_Adil_Waseem_CV.pdf" download style="font-size:.72rem;padding:.52rem 1.3rem;">Download CV ↓</a>
     <a class="nav-cta" href="mailto:aliwasim.12aaa64@gmail.com">Hire Me</a>
     <div class="burger" id="burger" onclick="toggleMobile()">
       <span></span><span></span><span></span>
@@ -302,12 +309,13 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
   <p class="s-label rv">Expertise</p>
   <h2 class="s-title rv d1">What I work with</h2>
   <div class="sk-grid">
-    <div class="sk-card r rv d1"><div class="sk-ico"><img src="assets/icons/Agent & Orchestration.png" alt="Agent & Orchestration icon"></div><div class="sk-title">Agent &amp; Orchestration</div><div class="tags"><span class="tag">Agentic Pipelines</span><span class="tag">Multi-step Workflows</span><span class="tag">Tool Use &amp; Function Calling</span><span class="tag">Local LLMs via Ollama</span><span class="tag">Llama 3.1</span><span class="tag">Prompt Engineering</span><span class="tag">Claude API</span></div></div>
+    <div class="sk-card r rv d1"><div class="sk-ico"><img src="assets/icons/Agent & Orchestration.png" alt="Agent & Orchestration icon"></div><div class="sk-title">Agent &amp; Orchestration</div><div class="tags"><span class="tag">Agentic Pipelines</span><span class="tag">Multi-step Workflows</span><span class="tag">Tool Use &amp; Function Calling</span><span class="tag">Local LLMs via Ollama</span><span class="tag">Llama 3.1</span><span class="tag">Prompt Engineering</span><span class="tag">Claude API</span><span class="tag">Gemini API</span><span class="tag">Groq</span></div></div>
     <div class="sk-card v rv d2"><div class="sk-ico">🧠</div><div class="sk-title">AI &amp; Machine Learning</div><div class="tags"><span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">NLP</span><span class="tag">Computer Vision</span><span class="tag">OCR</span><span class="tag">Speech Recognition</span><span class="tag">MediaPipe</span><span class="tag">Model Inference Optimization</span></div></div>
-    <div class="sk-card g rv d3"><div class="sk-ico"><img src="assets/icons/automation&web.png" alt="Automation & Web icon"></div><div class="sk-title">Automation &amp; Web</div><div class="tags"><span class="tag">Playwright</span><span class="tag">Selenium</span><span class="tag">BeautifulSoup</span><span class="tag">Web Scraping</span><span class="tag">Browser Automation</span><span class="tag">Desktop Automation</span></div></div>
-    <div class="sk-card r rv d2"><div class="sk-ico"><img src="assets/icons/frameworks&tools.png" alt="Frameworks & Tools icon"></div><div class="sk-title">Frameworks &amp; Tools</div><div class="tags"><span class="tag">FastAPI</span><span class="tag">Streamlit</span><span class="tag">PySide6</span><span class="tag">REST APIs</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">OpenCV</span></div></div>
+    <div class="sk-card g rv d3"><div class="sk-ico"><img src="assets/icons/automation&web.png" alt="Automation & Web icon"></div><div class="sk-title">Automation &amp; Web</div><div class="tags"><span class="tag">Playwright</span><span class="tag">Selenium</span><span class="tag">BeautifulSoup</span><span class="tag">Web Scraping</span><span class="tag">Browser Automation</span><span class="tag">Desktop Automation</span><span class="tag">Voice Control</span><span class="tag">Windows Automation</span></div></div>
+    <div class="sk-card r rv d2"><div class="sk-ico"><img src="assets/icons/frameworks&tools.png" alt="Frameworks & Tools icon"></div><div class="sk-title">Frameworks &amp; Tools</div><div class="tags"><span class="tag">FastAPI</span><span class="tag">Streamlit</span><span class="tag">PySide6</span><span class="tag">PyQt6</span><span class="tag">LangChain</span><span class="tag">LCEL Pipelines</span><span class="tag">REST APIs</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">OpenCV</span></div></div>
     <div class="sk-card v rv d3"><div class="sk-ico"><img src="assets/icons/programming.png" alt="Programming icon"></div><div class="sk-title">Programming</div><div class="tags"><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Next.js</span><span class="tag">React</span></div></div>
-    <div class="sk-card g rv d4"><div class="sk-ico"><img src="assets/icons/specialized models.png" alt="Specialized Models icon"></div><div class="sk-title">Specialized Models</div><div class="tags"><span class="tag">SAM 2.1</span><span class="tag">Real-ESRGAN</span><span class="tag">Big-LaMa</span><span class="tag">Text Summarization</span><span class="tag">Object Segmentation</span><span class="tag">LoRA Fine-tuning</span></div></div>
+    <div class="sk-card g rv d4"><div class="sk-ico"><img src="assets/icons/specialized models.png" alt="Specialized Models icon"></div><div class="sk-title">Specialized Models</div><div class="tags"><span class="tag">SAM 2.1</span><span class="tag">Real-ESRGAN</span><span class="tag">Big-LaMa</span><span class="tag">MediaPipe</span><span class="tag">RoBERTa</span><span class="tag">BART</span><span class="tag">sentence-transformers</span><span class="tag">LoRA Fine-tuning</span><span class="tag">Model Chaining</span><span class="tag">Multi-model Pipelines</span></div></div>
+    <div class="sk-card r rv d1"><div class="sk-ico">🗄️</div><div class="sk-title">RAG &amp; Vector Systems</div><div class="tags"><span class="tag">GraphRAG</span><span class="tag">RAG Pipelines</span><span class="tag">Vector Embeddings</span><span class="tag">LanceDB</span><span class="tag">all-MiniLM</span><span class="tag">Semantic Search</span><span class="tag">Knowledge Graphs</span><span class="tag">Reranking</span></div></div>
   </div>
 </section>
 
@@ -321,27 +329,33 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
     <a class="pill rv d2" href="https://github.com/OK-ALI" target="_blank" style="align-self:flex-end;">All projects on GitHub ↗</a>
   </div>
   <div class="plist">
-    <a class="prow rv" href="https://github.com/OK-ALI/Nexa-AI" target="_blank">
+    <a class="prow featured rv" href="https://github.com/OK-ALI/Nexa-AI" target="_blank">
       <span class="pnum">01</span>
-      <div><div class="pname">NEXA |  AI Agent System</div><div class="pdesc">Hybrid AI agent with 190+ callable functions. Voice driven orchestration of desktop workflows with approximately 95% intent accuracy and online/offline LLM switching via Ollama.</div><div class="ptags"><span class="ptag">Python</span><span class="ptag">Llama 3.1</span><span class="ptag">Ollama</span><span class="ptag">Speech Recognition</span><span class="ptag">NLP</span><span class="ptag">System Automation</span></div></div>
+      <div><div class="fbadge">Featured</div><div class="pname">NEXA |  AI Desktop Assistant</div><div class="pdesc">A voice-driven AI desktop assistant with 190+ callable functions, controlling your Windows environment through natural language with approximately 95% intent accuracy. NEXA runs a local GraphRAG memory system under the hood, storing personal memories as a relational node graph, visualized in an interactive graph UI, semantically retrieved via all-MiniLM and LanceDB, so every response is grounded in context that actually knows you. Fully offline-capable with online/offline LLM switching via Ollama and Llama 3.1.</div><div class="ptags"><span class="ptag">Python</span><span class="ptag">Llama 3.1</span><span class="ptag">GraphRAG</span><span class="ptag">LanceDB</span><span class="ptag">Vector Embeddings</span><span class="ptag">all-MiniLM</span><span class="ptag">Knowledge Graph</span><span class="ptag">Ollama</span><span class="ptag">Speech Recognition</span><span class="ptag">NLP</span><span class="ptag">System Automation</span></div></div>
       <span class="parr">↗</span>
     </a>
-    <a class="prow rv d1" href="https://github.com/OK-ALI/CortX" target="_blank">
+    <a class="prow featured rv d1" href="https://github.com/OK-ALI/CortX" target="_blank">
       <span class="pnum">02</span>
-      <div><div class="pname">Cortx |  Autonomous Research Agent</div><div class="pdesc">Fully local research agent that decomposes queries, scrapes the web, synthesizes content, and delivers answers end to end with zero API cost and full privacy.</div><div class="ptags"><span class="ptag">Python</span><span class="ptag">Playwright</span><span class="ptag">BeautifulSoup</span><span class="ptag">Llama 3.1</span><span class="ptag">DuckDuckGo API</span></div></div>
+      <div><div class="fbadge">Featured</div><div class="pname">Cortx |  Autonomous Web Research Assistant</div><div class="pdesc">CortX is a fully local autonomous web research assistant that thinks before it searches. It breaks down your query into intent, hunts sources across the web, and pushes through anti-bot barriers using a three-tier scraping engine that falls back automatically across httpx, Playwright, and Selenium. Scraped content is embedded and stored in LanceDB, powering a RAG pipeline that synthesizes clean, source-cited answers through LangChain and makes follow-up queries instant without re-scraping. Ships with a polished PyQt6 desktop GUI, full offline support via Ollama, and optional Groq cloud fallback when you need speed.</div><div class="ptags"><span class="ptag">Python</span><span class="ptag">Playwright</span><span class="ptag">BeautifulSoup</span><span class="ptag">Llama 3.1</span><span class="ptag">DuckDuckGo API</span><span class="ptag">LangChain</span><span class="ptag">LanceDB</span><span class="ptag">PyQt6</span><span class="ptag">Ollama</span><span class="ptag">RAG</span><span class="ptag">Vector Caching</span><span class="ptag">Intent Analysis</span><span class="ptag">Answer Synthesis</span></div></div>
       <span class="parr">↗</span>
     </a>
-    <a class="prow rv d2" href="https://github.com/OK-ALI/TrueFit" target="_blank">
+  </div>
+
+  <div class="other-ph">
+    <p class="s-label rv">Other Projects</p>
+  </div>
+  <div class="plist">
+    <a class="prow rv" href="https://github.com/OK-ALI/TrueFit" target="_blank">
       <span class="pnum">03</span>
       <div><div class="pname">TrueFit |  AI Body Measurement System</div><div class="pdesc">Extracts 15+ anthropometric measurements from a single image using MediaPipe 33 landmark pose estimation. Production REST API with Docker deployment.</div><div class="ptags"><span class="ptag">Python</span><span class="ptag">Computer Vision</span><span class="ptag">MediaPipe</span><span class="ptag">FastAPI</span><span class="ptag">Docker</span></div></div>
       <span class="parr">↗</span>
     </a>
-    <a class="prow rv d3" href="https://github.com/OK-ALI/NoteWise" target="_blank">
+    <a class="prow rv d1" href="https://github.com/OK-ALI/NoteWise" target="_blank">
       <span class="pnum">04</span>
       <div><div class="pname">NoteWise |  Document Intelligence</div><div class="pdesc">Ingests handwritten notes, PDFs, and presentations to generate structured summaries, MCQs, and study materials powered by Gemini 2.0 Flash AI.</div><div class="ptags"><span class="ptag">Python</span><span class="ptag">Streamlit</span><span class="ptag">Gemini 2.0</span><span class="ptag">OCR</span><span class="ptag">NLP</span></div></div>
       <span class="parr">↗</span>
     </a>
-    <a class="prow rv d4" href="https://github.com/OK-ALI/Nexus-2.0" target="_blank">
+    <a class="prow rv d2" href="https://github.com/OK-ALI/Nexus-2.0" target="_blank">
       <span class="pnum">05</span>
       <div><div class="pname">NEXUS |  AI Image Editing Pipeline</div><div class="pdesc">Chained multi-model pipeline using SAM 2.1, Big-LaMa, and Real-ESRGAN for precise object removal, inpainting, and optional super-resolution enhancement.</div><div class="ptags"><span class="ptag">Python</span><span class="ptag">SAM 2.1</span><span class="ptag">Big-LaMa</span><span class="ptag">Real-ESRGAN</span><span class="ptag">Computer Vision</span></div></div>
       <span class="parr">↗</span>
@@ -375,6 +389,7 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
   <h2 class="ct-head rv d1">LETS BUILD<br><span>SOMETHING</span><br>REAL.</h2>
   <div class="ct-links rv d2">
     <a class="cbtn p" href="mailto:aliwasim.12aaa64@gmail.com">✉ aliwasim.12aaa64@gmail.com</a>
+    <a class="cbtn p" href="assets/Ali_Adil_Waseem_CV.pdf" download>↓ Download CV</a>
     <a class="cbtn s" href="https://linkedin.com/in/ali-a-here" target="_blank">LinkedIn ↗</a>
     <a class="cbtn s" href="https://github.com/OK-ALI" target="_blank">GitHub ↗</a>
     <a class="cbtn s" href="tel:+923065688051">+92 306 5688051</a>
@@ -401,7 +416,7 @@ if(window.matchMedia('(hover:hover)').matches){
 }
 
 // MARQUEE
-const items=['AI Engineering','Agentic Systems','Python','Automation','Local LLMs','Computer Vision','FastAPI','Playwright','NLP','190+ Functions','Llama 3.1','Workflow Orchestration','Docker','Speech Recognition','Web Scraping'];
+const items=['AI Engineering','Agentic Systems','Python','Automation','Local LLMs','Computer Vision','FastAPI','Playwright','NLP','190+ Functions','Llama 3.1','Workflow Orchestration','Docker','Speech Recognition','Web Scraping','GraphRAG','Vector Embeddings','LanceDB','Knowledge Graph'];
 const mq=document.getElementById('mq');
 let h='';for(let i=0;i<2;i++){items.forEach(t=>{h+=`<span>${t}</span><span class="dot">✦</span>`;});}
 mq.innerHTML=h;
