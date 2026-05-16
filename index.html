@@ -18,6 +18,7 @@
   --card-bg:#ffffff;--card-border:rgba(8,8,14,.09);
   --node-bg:#ffffff;--node-border:rgba(8,8,14,.13);
   --line-col:rgba(8,8,14,.12);
+  --pi-base:invert(0);--pi-hov:invert(1);
 }
 [data-theme="dark"]{
   --bg:#08080e;--bg2:#101018;--bg3:#181822;
@@ -25,6 +26,7 @@
   --txt:#f3ede5;--muted:#8a8aa2;--inv:#08080e;
   --card-bg:#13131c;--card-border:rgba(255,255,255,.08);
   --node-bg:#13131c;--node-border:rgba(255,255,255,.13);
+  --pi-base:invert(1);--pi-hov:invert(0);
   --line-col:rgba(255,255,255,.1);
 }
 :root{
@@ -143,6 +145,8 @@ section{padding:8rem 5rem;}
 .pill{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--pally);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.5rem;border-radius:100px;text-decoration:none;color:var(--txt);transition:all .22s;}
 .pill::after{background:var(--bg);}
 .pill:hover{transform:translateY(-2px);box-shadow:0 0 25px rgba(91,63,255,.5);}
+.pill-icon{width:1.2em;height:1.2em;object-fit:contain;filter:var(--pi-base);transition:filter .22s;}
+.pill:hover .pill-icon{filter:var(--pi-hov);}
 .pill.fill{color:#fff;background:var(--acc);}
 .pill.fill::after{background:var(--acc);}
 .pill.fill:hover{box-shadow:0 0 25px rgba(232,56,26,.5);}
@@ -270,6 +274,7 @@ section{padding:8rem 5rem;}
 .cbtn.p{color:var(--bg);}
 .cbtn.p::after{background:var(--txt);}
 .cbtn.p:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(232,56,26,.6);}
+.cbtn-p-icon{width:1.2em;height:1.2em;object-fit:contain;filter:var(--pi-hov);transition:filter .22s;}
 .cbtn.s{color:var(--txt);}
 .cbtn.s::after{background:var(--bg);}
 .cbtn.s:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(91,63,255,.6);}
@@ -423,9 +428,9 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
     <p class="rv d4">My focus is on systems that do not just respond. They <strong>act, self-correct, and scale</strong>. From voice driven desktop assistants to fully local research agents, I build end-to-end AI products that solve real problems for real users.</p>
     <div class="alinks rv d5">
       <a class="pill fill" href="assets/Ali_Adil_Waseem_CV.pdf" target="_blank">Download CV ⤓</a>
-      <a class="pill" href="https://github.com/OK-ALI" target="_blank">GitHub ↗</a>
-      <a class="pill" href="https://linkedin.com/in/ali-a-here" target="_blank">LinkedIn ↗</a>
-      <a class="pill" href="mailto:aliwasim.12aaa64@gmail.com">Email Me</a>
+      <a class="pill" href="https://github.com/OK-ALI" target="_blank"><img src="assets/icons/github.png" alt="" class="pill-icon"> GitHub ↗</a>
+      <a class="pill" href="https://linkedin.com/in/ali-a-here" target="_blank"><img src="assets/icons/linkedin.png" alt="" class="pill-icon"> LinkedIn ↗</a>
+      <a class="pill" href="mailto:aliwasim.12aaa64@gmail.com"><img src="assets/icons/email.png" alt="" class="pill-icon"> Email Me</a>
     </div>
   </div>
 </section>
@@ -457,7 +462,7 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
       <p class="s-label rv">Spotlight</p>
       <h2 class="s-title rv d1">Featured Projects</h2>
     </div>
-    <a class="pill rv d2" href="https://github.com/OK-ALI" target="_blank" style="align-self:flex-end;">All on GitHub ↗</a>
+    <a class="pill rv d2" href="https://github.com/OK-ALI" target="_blank" style="align-self:flex-end;"><img src="assets/icons/github.png" alt="" class="pill-icon"> All on GitHub ↗</a>
   </div>
   <div class="feat-grid rv d2">
     <a class="feat-card" href="https://github.com/OK-ALI/Nexa-AI" target="_blank">
@@ -528,10 +533,10 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
   <p class="ct-eye rv">Get in touch</p>
   <h2 class="ct-head rv d1">LETS BUILD<br><span>SOMETHING</span><br>REAL.</h2>
   <div class="ct-links rv d2">
-    <a class="cbtn p" href="mailto:aliwasim.12aaa64@gmail.com">✉ aliwasim.12aaa64@gmail.com</a>
-    <a class="cbtn s" href="https://linkedin.com/in/ali-a-here" target="_blank">LinkedIn ↗</a>
-    <a class="cbtn s" href="https://github.com/OK-ALI" target="_blank">GitHub ↗</a>
-    <a class="cbtn s" href="tel:+923065688051">+92 306 5688051</a>
+    <a class="cbtn p" href="mailto:aliwasim.12aaa64@gmail.com"><img src="assets/icons/email.png" alt="" class="cbtn-p-icon"> aliwasim.12aaa64@gmail.com</a>
+    <a class="cbtn s" href="https://linkedin.com/in/ali-a-here" target="_blank"><img src="assets/icons/linkedin.png" alt="" class="pill-icon"> LinkedIn ↗</a>
+    <a class="cbtn s" href="https://github.com/OK-ALI" target="_blank"><img src="assets/icons/github.png" alt="" class="pill-icon"> GitHub ↗</a>
+    <a class="cbtn s" href="tel:+923065688051"><img src="assets/icons/phone.png" alt="" class="pill-icon"> +92 306 5688051</a>
   </div>
 </section>
 
