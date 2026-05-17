@@ -37,13 +37,14 @@
 }
 
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--txt);font-family:var(--pally);font-weight:700;overflow-x:hidden;cursor:none;transition:background .4s,color .4s;}
+body{background:var(--bg);color:var(--txt);font-family:var(--pally);font-weight:700;overflow-x:hidden;transition:background .4s,color .4s;}
 
 /* CURSOR */
 #cur{position:fixed;width:10px;height:10px;background:var(--acc);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s;mix-blend-mode:difference;}
 #cur2{position:fixed;width:38px;height:38px;border:1.5px solid var(--acc);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.4;transition:width .15s,height .15s,opacity .15s,border-color .15s;}
 #cur.big{width:22px;height:22px;background:var(--acc2);}
 #cur2.big{width:68px;height:68px;border-color:var(--acc2);opacity:.12;}
+body.custom-cursor-active, body.custom-cursor-active .sk-node, body.custom-cursor-active .theme-btn { cursor: none; }
 @media(hover:none), (max-width:768px){#cur,#cur2{display:none !important;}body,.sk-node,.theme-btn{cursor:auto !important;}}
 
 /* SPINNING BORDER MIXIN */
@@ -57,7 +58,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--pally);font-weight:
 .nav-cta, .pill, .cbtn, .theme-btn { background:var(--txt); }
 
 /* THEME TOGGLE */
-.theme-btn{position:fixed;bottom:2rem;right:2rem;z-index:200;width:48px;height:48px;border-radius:50%;cursor:none;display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all .3s;box-shadow:0 4px 20px rgba(0,0,0,.12);color:var(--txt);}
+.theme-btn{position:fixed;bottom:2rem;right:2rem;z-index:200;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all .3s;box-shadow:0 4px 20px rgba(0,0,0,.12);color:var(--txt);}
 .theme-btn::after{background:var(--card-bg);}
 .theme-btn:hover{transform:scale(1.1);box-shadow:0 0 25px rgba(0,204,143,.5);}
 
@@ -102,6 +103,47 @@ nav.scrolled{background:rgba(var(--bg-rgb),.93);backdrop-filter:blur(20px);-webk
 .h-role em{font-style:italic;font-family:var(--pally);font-weight:700;color:var(--muted);font-size:.95em;}
 .h-meta{text-align:right;flex-shrink:0;}
 .h-meta p{font-family:var(--pally);font-size:.76rem;color:var(--muted);letter-spacing:.06em;line-height:1.9;font-weight:700;}
+.h-content{width:100%;display:grid;grid-template-columns:1.15fr 0.85fr;gap:5rem;align-items:flex-end;z-index:2;position:relative;}
+.hero-left{display:flex;flex-direction:column;}
+.hero-right{opacity:0;animation:up .95s 1s forwards;display:flex;justify-content:center;align-items:flex-end;}
+.ide-window{width:100%;max-width:440px;background:rgba(20,20,30,.4);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.06);border-radius:14px;box-shadow:0 30px 60px rgba(0,0,0,.25);overflow:hidden;}
+[data-theme="light"] .ide-window{background:rgba(243,237,229,.35);border-color:rgba(16,16,24,.06);box-shadow:0 30px 60px rgba(16,16,24,.08);}
+.ide-header{display:flex;align-items:center;background:rgba(0,0,0,.15);padding:.6rem 1rem .6rem 1rem;border-bottom:1px solid rgba(255,255,255,.03);gap:1.5rem;}
+[data-theme="light"] .ide-header{background:rgba(0,0,0,.04);border-bottom-color:rgba(16,16,24,.03);}
+.ide-dots{display:flex;gap:6px;flex-shrink:0;}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+.dot-r{background:#ff5f56;}
+.dot-y{background:#ffbd2e;}
+.dot-g{background:#27c93f;}
+.ide-tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;}
+.ide-tabs::-webkit-scrollbar{display:none;}
+.ide-tab{display:flex;align-items:center;gap:6px;background:transparent;border:none;padding:.4rem .8rem;font-family:var(--pally);font-size:.65rem;font-weight:700;color:var(--txt);letter-spacing:.03em;cursor:pointer;opacity:.4;transition:opacity .2s,background .2s;outline:none;}
+.ide-tab.active{background:rgba(0,0,0,.2);opacity:1;border-radius:6px;box-shadow:inset 0 1px 0 rgba(255,255,255,.03);}
+[data-theme="light"] .ide-tab.active{background:rgba(0,0,0,.05);}
+.ide-tab:hover{opacity:.85;}
+.ide-tab-icon-img{width:13px;height:13px;object-fit:contain;flex-shrink:0;}
+.ide-body{display:flex;padding:1.2rem;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;font-size:.76rem;line-height:1.5;color:var(--txt);letter-spacing:.02em;}
+.ide-line-numbers{color:var(--muted);opacity:.35;text-align:right;padding-right:1rem;user-select:none;border-right:1px solid rgba(255,255,255,.05);margin-right:1rem;line-height:1.5;}
+[data-theme="light"] .ide-line-numbers{border-right-color:rgba(16,16,24,.05);}
+.ide-code{margin:0;white-space:pre;overflow:hidden;flex:1;}
+.ide-code .kwd{color:var(--acc2);font-weight:700;}
+.ide-code .str{color:var(--acc3);}
+.ide-code .cls{color:var(--acc);}
+.ide-code .fn{color:var(--acc2);}
+.ide-code .var{color:var(--txt);}
+.typing-cursor{border-left:2px solid var(--acc);margin-left:1px;animation:blink .7s infinite;}
+@keyframes blink{0%,100%{opacity:0;}50%{opacity:1;}}
+
+@media(max-width:1024px){
+  .h-content{grid-template-columns:1fr;gap:3rem;align-items:center;}
+  .hero-right{justify-content:center;align-items:center;margin-top:2rem;}
+  .ide-window{max-width:380px;}
+  .scroll-hint{display:none !important;}
+}
+@media(max-width:768px){
+  .h-content{gap:2rem;}
+  .ide-window{max-width:320px;font-size:.7rem;}
+}
 .scroll-hint{position:absolute;bottom:2.4rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:up .8s 1.2s forwards;}
 .scroll-hint span{font-family:var(--pally);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--muted);}
 .s-line{width:1px;height:48px;background:linear-gradient(var(--txt),transparent);animation:pulse 2.3s ease-in-out infinite;}
@@ -148,6 +190,8 @@ section{padding:8rem 5rem;}
 .pill:hover{transform:translateY(-2px);box-shadow:0 0 25px rgba(91,63,255,.5);}
 .pill-icon{width:1.2em;height:1.2em;object-fit:contain;filter:var(--pi-base);transition:filter .22s;}
 .pill:hover .pill-icon{filter:var(--pi-hov);}
+.arrow-icon{display:inline-block;width:.85em;height:.85em;background-color:currentColor;-webkit-mask-image:url('assets/icons/arrow-right-up.png');mask-image:url('assets/icons/arrow-right-up.png');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;vertical-align:middle;transition:transform .22s ease,background-color .22s;margin-left:.25rem;}
+.pill:hover .arrow-icon, .cbtn:hover .arrow-icon{transform:translate(2px,-2px);}
 .pill.fill{color:#fff;background:var(--acc);}
 .pill.fill::after{background:var(--acc);}
 .pill.fill:hover{box-shadow:0 0 25px rgba(232,56,26,.5);}
@@ -175,7 +219,7 @@ section{padding:8rem 5rem;}
 @keyframes cPulse{0%,100%{box-shadow:0 0 0 12px rgba(232,56,26,.12),0 0 0 24px rgba(232,56,26,.05);}50%{box-shadow:0 0 0 18px rgba(232,56,26,.08),0 0 0 36px rgba(232,56,26,.03);}}
 
 /* skill nodes */
-.sk-node{position:absolute;z-index:5;cursor:none;}
+.sk-node{position:absolute;z-index:5;}
 .sk-node:hover{z-index:20;}
 .sk-bubble{width:82px;height:82px;border-radius:50%;background:var(--node-border);display:flex;align-items:center;justify-content:center;font-size:1.5rem;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;box-shadow:0 4px 20px rgba(0,0,0,.07);}
 .sk-bubble::after{background:var(--node-bg);}
@@ -264,6 +308,18 @@ section{padding:8rem 5rem;}
 [data-theme="dark"] .eorg{color:var(--muted);}
 .edesc{font-family:var(--pally);font-size:.82rem;color:rgba(243,237,229,.34);line-height:1.8;font-weight:700;}
 [data-theme="dark"] .edesc{color:var(--muted);}
+.edu-card-icon{width:1.25rem;height:1.25rem;object-fit:contain;filter:invert(1);opacity:.75;}
+.icon-white{filter:invert(1) !important;}
+.feat-num-img{height:1.4rem;width:auto;object-fit:contain;filter:var(--pi-base);opacity:.5;transition:opacity .3s;}
+.feat-card:hover .feat-num-img{opacity:1;}
+.pnum-img{height:1.6rem;width:auto;object-fit:contain;filter:var(--pi-base);opacity:.5;transition:opacity .3s;}
+.prow:hover .pnum-img{opacity:1;}
+.theme-icon{width:22px;height:22px;object-fit:contain;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(0deg);transition:opacity .3s,transform .3s,filter .22s;pointer-events:none;filter:var(--pi-base);}
+.theme-btn:hover .theme-icon{filter:var(--pi-hov);}
+[data-theme="light"] .sun-icon{opacity:0;transform:translate(-50%,-50%) rotate(90deg);}
+[data-theme="light"] .moon-icon{opacity:1;transform:translate(-50%,-50%) rotate(0deg);}
+[data-theme="dark"] .sun-icon{opacity:1;transform:translate(-50%,-50%) rotate(0deg);}
+[data-theme="dark"] .moon-icon{opacity:0;transform:translate(-50%,-50%) rotate(-90deg);}
 
 /* CONTACT */
 #contact{text-align:center;padding:9rem 5rem;background:var(--bg2);transition:background .4s;}
@@ -357,7 +413,10 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
 <div id="cur2"></div>
 
 <!-- THEME TOGGLE -->
-<button class="theme-btn" id="themeBtn" aria-label="Toggle theme">🌙</button>
+<button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+  <img src="assets/icons/sun.png" alt="Light Mode" class="theme-icon sun-icon">
+  <img src="assets/icons/moon.png" alt="Dark Mode" class="theme-icon moon-icon">
+</button>
 
 <!-- MOBILE MENU -->
 <div class="mmenu" id="mmenu">
@@ -391,13 +450,42 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
   <div class="blob b1"></div>
   <div class="blob b2"></div>
   <div class="blob b3"></div>
-  <p class="h-eye">AI Engineer · Builder · Automation Architect</p>
-  <h1 class="h-name">Ali Adil<br><span>Waseem</span></h1>
-  <div class="h-bot">
-    <p class="h-role">Designing systems that <em>think, act, and scale</em><br>from agentic pipelines to autonomous workflows.</p>
-    <div class="h-meta">
-      <p>Lahore, Pakistan</p>
-      <p>Open to opportunities</p>
+  <div class="h-content">
+    <div class="hero-left">
+      <p class="h-eye">AI Engineer · Builder · Automation Architect</p>
+      <h1 class="h-name">Ali Adil<br><span>Waseem</span></h1>
+      <div class="h-bot">
+        <p class="h-role">Designing systems that <em>think, act, and scale</em><br>from agentic pipelines to autonomous workflows.</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="ide-window">
+        <div class="ide-header">
+          <div class="ide-dots">
+            <span class="dot dot-r"></span>
+            <span class="dot dot-y"></span>
+            <span class="dot dot-g"></span>
+          </div>
+          <div class="ide-tabs">
+            <button class="ide-tab active" data-file="greeting.py">
+              <img src="assets/icons/python.png" alt="" class="ide-tab-icon-img">
+              <span class="ide-tab-name">greeting.py</span>
+            </button>
+            <button class="ide-tab" data-file="coffee.py">
+              <img src="assets/icons/python.png" alt="" class="ide-tab-icon-img">
+              <span class="ide-tab-name">coffee.py</span>
+            </button>
+            <button class="ide-tab" data-file="solve_error.py">
+              <img src="assets/icons/python.png" alt="" class="ide-tab-icon-img">
+              <span class="ide-tab-name">solve_error.py</span>
+            </button>
+          </div>
+        </div>
+        <div class="ide-body">
+          <div class="ide-line-numbers" id="ideLineNumbers"></div>
+          <pre class="ide-code" id="ideCode"></pre>
+        </div>
+      </div>
     </div>
   </div>
   <div class="scroll-hint"><span>Scroll</span><div class="s-line"></div></div>
@@ -428,9 +516,9 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
     <p class="rv d3">I am an <strong>AI Engineer</strong> specializing in autonomous agent systems, multi-step pipelines, and workflow orchestration. I graduated with a BS in Artificial Intelligence from UMT Lahore in 2025.</p>
     <p class="rv d4">My focus is on systems that do not just respond. They <strong>act, self-correct, and scale</strong>. From voice driven desktop assistants to fully local research agents, I build end-to-end AI products that solve real problems for real users.</p>
     <div class="alinks rv d5">
-      <a class="pill fill" href="assets/Ali_Adil_Waseem_CV.pdf" target="_blank">Download CV ⤓</a>
-      <a class="pill" href="https://github.com/OK-ALI" target="_blank"><img src="assets/icons/github.png" alt="" class="pill-icon"> GitHub ↗</a>
-      <a class="pill" href="https://linkedin.com/in/ali-a-here" target="_blank"><img src="assets/icons/linkedin.png" alt="" class="pill-icon"> LinkedIn ↗</a>
+      <a class="pill fill" href="assets/Ali_Adil_Waseem_CV.pdf" target="_blank"><img src="assets/icons/download.png" alt="" class="pill-icon icon-white"> Download CV</a>
+      <a class="pill" href="https://github.com/OK-ALI" target="_blank"><img src="assets/icons/github.png" alt="" class="pill-icon"> GitHub <span class="arrow-icon"></span></a>
+      <a class="pill" href="https://linkedin.com/in/ali-a-here" target="_blank"><img src="assets/icons/linkedin.png" alt="" class="pill-icon"> LinkedIn <span class="arrow-icon"></span></a>
       <a class="pill" href="mailto:aliwasim.12aaa64@gmail.com"><img src="assets/icons/email.png" alt="" class="pill-icon"> Email Me</a>
     </div>
   </div>
@@ -463,26 +551,26 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
       <p class="s-label rv">Spotlight</p>
       <h2 class="s-title rv d1">Featured Projects</h2>
     </div>
-    <a class="pill rv d2" href="https://github.com/OK-ALI" target="_blank" style="align-self:flex-end;"><img src="assets/icons/github.png" alt="" class="pill-icon"> All on GitHub ↗</a>
+    <a class="pill rv d2" href="https://github.com/OK-ALI" target="_blank" style="align-self:flex-end;"><img src="assets/icons/github.png" alt="" class="pill-icon"> All on GitHub <span class="arrow-icon"></span></a>
   </div>
   <div class="feat-grid rv d2">
     <a class="feat-card" href="https://github.com/OK-ALI/Nexa-AI" target="_blank">
-      <div class="feat-num">01</div>
+      <div class="feat-num"><img src="assets/icons/number-one.png" alt="01" class="feat-num-img"></div>
       <div class="feat-badge">Featured</div>
       <div class="feat-name">NEXA</div>
       <div class="feat-sub">AI Desktop Assistant</div>
       <div class="feat-desc">A voice-driven AI desktop assistant with 190+ callable functions, controlling your Windows environment through natural language with approximately 95% intent accuracy. NEXA runs a local GraphRAG memory system under the hood, storing personal memories as a relational node graph, visualized in an interactive graph UI, semantically retrieved via all-MiniLM and LanceDB, so every response is grounded in context that actually knows you. Fully offline-capable with online/offline LLM switching via Ollama and Llama 3.1.</div>
       <div class="feat-tags"><span class="ptag">Python</span><span class="ptag">Llama 3.1</span><span class="ptag">GraphRAG</span><span class="ptag">LanceDB</span><span class="ptag">Vector Embeddings</span><span class="ptag">all-MiniLM</span><span class="ptag">Knowledge Graph</span><span class="ptag">Ollama</span><span class="ptag">Speech Recognition</span><span class="ptag">NLP</span><span class="ptag">System Automation</span></div>
-      <div class="feat-arrow">↗</div>
+      <div class="feat-arrow"><span class="arrow-icon" style="margin:0;"></span></div>
     </a>
     <a class="feat-card feat-card-2" href="https://github.com/OK-ALI/CortX" target="_blank">
-      <div class="feat-num">02</div>
+      <div class="feat-num"><img src="assets/icons/number-two.png" alt="02" class="feat-num-img"></div>
       <div class="feat-badge">Featured</div>
       <div class="feat-name">CortX</div>
       <div class="feat-sub">Autonomous Web Research Assistant</div>
       <div class="feat-desc">CortX is a fully local autonomous web research assistant that thinks before it searches. It breaks down your query into intent, hunts sources across the web, and pushes through anti-bot barriers using a three-tier scraping engine that falls back automatically across httpx, Playwright, and Selenium. Scraped content is embedded and stored in LanceDB, powering a RAG pipeline that synthesizes clean, source-cited answers through LangChain and makes follow-up queries instant without re-scraping. Ships with a polished PyQt6 desktop GUI, full offline support via Ollama, and optional Groq cloud fallback when you need speed.</div>
       <div class="feat-tags"><span class="ptag">Python</span><span class="ptag">Playwright</span><span class="ptag">BeautifulSoup</span><span class="ptag">Llama 3.1</span><span class="ptag">DuckDuckGo API</span><span class="ptag">LangChain</span><span class="ptag">LanceDB</span><span class="ptag">PyQt6</span><span class="ptag">Ollama</span><span class="ptag">RAG</span><span class="ptag">Vector Caching</span><span class="ptag">Intent Analysis</span><span class="ptag">Answer Synthesis</span></div>
-      <div class="feat-arrow">↗</div>
+      <div class="feat-arrow"><span class="arrow-icon" style="margin:0;"></span></div>
     </a>
   </div>
 
@@ -492,19 +580,19 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
   </div>
   <div class="plist">
     <a class="prow rv" href="https://github.com/OK-ALI/TrueFit" target="_blank">
-      <span class="pnum">03</span>
+      <span class="pnum"><img src="assets/icons/number-three.png" alt="03" class="pnum-img"></span>
       <div><div class="pname">TrueFit |  AI Body Measurement System</div><div class="pdesc">Extracts 15+ anthropometric measurements from a single image using MediaPipe 33 landmark pose estimation. Production REST API with Docker deployment.</div><div class="ptags"><span class="ptag">Python</span><span class="ptag">Computer Vision</span><span class="ptag">MediaPipe</span><span class="ptag">FastAPI</span><span class="ptag">Docker</span></div></div>
-      <span class="parr">↗</span>
+      <span class="parr"><span class="arrow-icon" style="margin:0;"></span></span>
     </a>
     <a class="prow rv d1" href="https://github.com/OK-ALI/NoteWise" target="_blank">
-      <span class="pnum">04</span>
+      <span class="pnum"><img src="assets/icons/number-4.png" alt="04" class="pnum-img"></span>
       <div><div class="pname">NoteWise |  Document Intelligence</div><div class="pdesc">Ingests handwritten notes, PDFs, and presentations to generate structured summaries, MCQs, and study materials powered by Gemini 2.0 Flash AI.</div><div class="ptags"><span class="ptag">Python</span><span class="ptag">Streamlit</span><span class="ptag">Gemini 2.0</span><span class="ptag">OCR</span><span class="ptag">NLP</span></div></div>
-      <span class="parr">↗</span>
+      <span class="parr"><span class="arrow-icon" style="margin:0;"></span></span>
     </a>
     <a class="prow rv d2" href="https://github.com/OK-ALI/Nexus-2.0" target="_blank">
-      <span class="pnum">05</span>
+      <span class="pnum"><img src="assets/icons/number-five.png" alt="05" class="pnum-img"></span>
       <div><div class="pname">NEXUS |  AI Image Editing Pipeline</div><div class="pdesc">Chained multi-model pipeline using SAM 2.1, Big-LaMa, and Real-ESRGAN for precise object removal, inpainting, and optional super-resolution enhancement.</div><div class="ptags"><span class="ptag">Python</span><span class="ptag">SAM 2.1</span><span class="ptag">Big-LaMa</span><span class="ptag">Real-ESRGAN</span><span class="ptag">Computer Vision</span></div></div>
-      <span class="parr">↗</span>
+      <span class="parr"><span class="arrow-icon" style="margin:0;"></span></span>
     </a>
   </div>
 </section>
@@ -515,13 +603,19 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
   <h2 class="s-title rv d1">Education &amp;<br>Leadership</h2>
   <div class="edu-grid">
     <div class="eitem rv d2">
-      <div class="eyear">2021 to 2025</div>
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem;">
+        <img src="assets/icons/graduation-cap.png" alt="" class="edu-card-icon">
+        <div class="eyear" style="margin:0;">2021 to 2025</div>
+      </div>
       <div class="etitle">BS in Artificial Intelligence</div>
       <div class="eorg">University of Management and Technology (UMT), Lahore</div>
       <div class="edesc">Studied AI systems, machine learning, computer vision, and NLP. Final year project was TrueFit, an AI body measurement extraction system using computer vision and pose estimation deployed via FastAPI and Docker.</div>
     </div>
     <div class="eitem rv d3">
-      <div class="eyear">March 2025 to August 2025</div>
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem;">
+        <img src="assets/icons/team.png" alt="" class="edu-card-icon">
+        <div class="eyear" style="margin:0;">March 2025 to August 2025</div>
+      </div>
       <div class="etitle">President | Gamer's Club</div>
       <div class="eorg">University of Management and Technology, Lahore</div>
       <div class="edesc">Led club operations, events, and a team of student coordinators. Mentored new members and drove participation through structured community building initiatives, developing cross-functional leadership and execution habits.</div>
@@ -535,8 +629,8 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
   <h2 class="ct-head rv d1">LETS BUILD<br><span>SOMETHING</span><br>REAL.</h2>
   <div class="ct-links rv d2">
     <a class="cbtn p" href="mailto:aliwasim.12aaa64@gmail.com"><img src="assets/icons/email.png" alt="" class="cbtn-p-icon"> aliwasim.12aaa64@gmail.com</a>
-    <a class="cbtn s" href="https://linkedin.com/in/ali-a-here" target="_blank"><img src="assets/icons/linkedin.png" alt="" class="pill-icon"> LinkedIn ↗</a>
-    <a class="cbtn s" href="https://github.com/OK-ALI" target="_blank"><img src="assets/icons/github.png" alt="" class="pill-icon"> GitHub ↗</a>
+    <a class="cbtn s" href="https://linkedin.com/in/ali-a-here" target="_blank"><img src="assets/icons/linkedin.png" alt="" class="pill-icon"> LinkedIn <span class="arrow-icon"></span></a>
+    <a class="cbtn s" href="https://github.com/OK-ALI" target="_blank"><img src="assets/icons/github.png" alt="" class="pill-icon"> GitHub <span class="arrow-icon"></span></a>
     <a class="cbtn s" href="tel:+923065688051"><img src="assets/icons/phone.png" alt="" class="pill-icon"> +92 306 5688051</a>
   </div>
 </section>
@@ -552,6 +646,7 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
 const c=document.getElementById('cur'),c2=document.getElementById('cur2');
 let mx=0,my=0,tx=0,ty=0;
 if(window.matchMedia('(hover:hover)').matches && window.innerWidth > 768){
+  document.body.classList.add('custom-cursor-active');
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});
   (function tick(){tx+=(mx-tx)*.12;ty+=(my-ty)*.12;c2.style.left=tx+'px';c2.style.top=ty+'px';requestAnimationFrame(tick);})();
   document.querySelectorAll('a,button,.prow,.sk-node,.theme-btn').forEach(el=>{
@@ -559,6 +654,107 @@ if(window.matchMedia('(hover:hover)').matches && window.innerWidth > 768){
     el.addEventListener('mouseleave',()=>{c.classList.remove('big');c2.classList.remove('big');});
   });
 }
+
+/* ── IDE AUTO WRITER ── */
+(function(){
+  const fileData = {
+    'greeting.py': [
+      "class AIEngineer:",
+      "    def __init__(self):",
+      "        self.name = \"Ali Adil\"",
+      "        self.location = \"Lahore, Pakistan\"",
+      "        self.status = \"Open to Opportunities\"",
+      "    ",
+      "    def greet(self):",
+      "        return \"Ready to build.\""
+    ],
+    'coffee.py': [
+      "def codegen(coffee):",
+      "    energy = coffee * 150",
+      "    while energy > 0:",
+      "        build_autonomous_agents()",
+      "        play_steam_games()",
+      "        energy -= 20",
+      "    return \"Refueling required...\""
+    ],
+    'solve_error.py': [
+      "def debug_system(errors):",
+      "    # Locate and squash styling & layout bugs",
+      "    for bug in errors:",
+      "        if bug.severity == \"high\":",
+      "            fix_coordinate_offset(bug)",
+      "    return \"All visual bugs squashed. System stable.\""
+    ]
+  };
+
+  const codeEl = document.getElementById('ideCode');
+  const lineNumbersEl = document.getElementById('ideLineNumbers');
+  const tabButtons = document.querySelectorAll('.ide-tab');
+  if(!codeEl || !lineNumbersEl) return;
+
+  let activeFile = 'greeting.py';
+  let lineIdx = 0, charIdx = 0;
+  let typingTimeout = null;
+
+  function highlight(text) {
+    return text
+      .replace(/\b(class|def|self|return|while|for|if|import|from)\b/g, "<span class='kwd'>$1</span>")
+      .replace(/(".*?")/g, "<span class='str'>$1</span>")
+      .replace(/\b(AIEngineer)\b/g, "<span class='cls'>$1</span>")
+      .replace(/\b(__init__|greet|codegen|build_autonomous_agents|play_steam_games|debug_system|fix_coordinate_offset)\b/g, "<span class='fn'>$1</span>");
+  }
+
+  function renderLineNumbers(totalLines) {
+    let html = "";
+    for (let i = 1; i <= totalLines; i++) {
+      html += i + "<br>";
+    }
+    lineNumbersEl.innerHTML = html;
+  }
+
+  function typeChar() {
+    const lines = fileData[activeFile];
+    if (lineIdx < lines.length) {
+      const currentLineText = lines[lineIdx];
+      if (charIdx < currentLineText.length) {
+        charIdx++;
+        let outputText = "";
+        for (let i = 0; i < lineIdx; i++) {
+          outputText += lines[i] + "\n";
+        }
+        outputText += currentLineText.substring(0, charIdx);
+        codeEl.innerHTML = highlight(outputText) + '<span class="typing-cursor"></span>';
+        typingTimeout = setTimeout(typeChar, 30 + Math.random() * 35);
+      } else {
+        lineIdx++;
+        charIdx = 0;
+        typingTimeout = setTimeout(typeChar, 180);
+      }
+    }
+  }
+
+  function loadFile(fileName) {
+    if (typingTimeout) clearTimeout(typingTimeout);
+    activeFile = fileName;
+    lineIdx = 0;
+    charIdx = 0;
+    codeEl.innerHTML = '<span class="typing-cursor"></span>';
+    renderLineNumbers(fileData[fileName].length);
+    typingTimeout = setTimeout(typeChar, 400);
+  }
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.classList.contains('active')) return;
+      tabButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      loadFile(btn.getAttribute('data-file'));
+    });
+  });
+
+  renderLineNumbers(fileData[activeFile].length);
+  typingTimeout = setTimeout(typeChar, 1400);
+})();
 
 /* ── MARQUEE ── */
 const items=['AI Engineering','Agentic Systems','Python','Automation','Local LLMs','Computer Vision','FastAPI','Playwright','NLP','190+ Functions','Llama 3.1','Workflow Orchestration','Docker','Speech Recognition','Web Scraping'];
@@ -592,7 +788,6 @@ const html=document.documentElement;
 themeBtn.addEventListener('click',()=>{
   const isDark=html.getAttribute('data-theme')==='dark';
   html.setAttribute('data-theme',isDark?'light':'dark');
-  themeBtn.textContent=isDark?'🌙':'☀️';
   drawLines(); // redraw SVG lines with new colour
 });
 
