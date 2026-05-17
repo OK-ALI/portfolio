@@ -30,7 +30,7 @@
   --line-col:rgba(255,255,255,.1);
 }
 :root{
-  --acc:#e8381a;--acc2:#5b3fff;--acc3:#00cc8f;
+  --acc:#e8381a;--acc2:#5b3fff;--acc3:#00cc8f;--acc4:#ffaa00;
   --bebas:'Bebas Neue',sans-serif;
   --clash:'Clash Display',sans-serif;
   --pally:'Pally',sans-serif;
@@ -213,55 +213,258 @@ section{padding:8rem 5rem;}
 #skills .s-title{color:var(--inv);}
 [data-theme="dark"] #skills .s-title{color:var(--txt);}
 #skills .inner-label{padding:0 5rem;}
-.neural-wrap{position:relative;width:100%;height:680px;margin-top:3rem;}
-/* SVG lines layer */
-@keyframes moveDash{to{stroke-dashoffset:-30;}}
-#neural-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:visible;}
-.neural-line{transition:stroke .35s,stroke-width .35s;}
+
+#skills-outer-wrap {
+  width: 100%;
+  height: 800px;
+  padding: 0 1.5rem;
+  overflow: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+}
+#skills-outer-wrap:active {
+  cursor: grabbing;
+}
+#skills-outer-wrap::-webkit-scrollbar { display: none; }
+
+.neural-wrap{position:relative;width:1450px;height:1150px;margin-top:2rem;display:block;}
+
 /* centre node */
-.c-node{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:110px;height:110px;border-radius:50%;background:var(--txt);color:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;box-shadow:0 0 0 12px rgba(232,56,26,.12),0 0 0 24px rgba(232,56,26,.05);animation:cPulse 3s ease-in-out infinite;}
+.c-node{position:absolute;left:0;top:0;width:110px;height:110px;border-radius:50%;background:var(--txt);color:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;box-shadow:0 0 0 12px rgba(232,56,26,.12),0 0 0 24px rgba(232,56,26,.05);animation:cPulse 3s ease-in-out infinite;cursor:grab;user-select:none;transform-origin: center;will-change: transform, opacity;backface-visibility: hidden;-webkit-backface-visibility: hidden;}
+.c-node:active{cursor:grabbing;}
 .c-node::before{opacity:1;}
 .c-node::after{background:var(--txt);}
 .c-node .cn-init{font-family:var(--bebas);font-size:1.8rem;letter-spacing:.06em;line-height:1;}
 .c-node .cn-sub{font-family:var(--pally);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;opacity:.5;margin-top:.15rem;}
 @keyframes cPulse{0%,100%{box-shadow:0 0 0 12px rgba(232,56,26,.12),0 0 0 24px rgba(232,56,26,.05);}50%{box-shadow:0 0 0 18px rgba(232,56,26,.08),0 0 0 36px rgba(232,56,26,.03);}}
 
-/* skill nodes */
-.sk-node{position:absolute;z-index:5;}
+/* Category and Skill Nodes */
+.sk-node{position:absolute;left:0;top:0;z-index:5;pointer-events:auto;user-select:none;transform-origin: center;will-change: transform, opacity;backface-visibility: hidden;-webkit-backface-visibility: hidden;}
 .sk-node:hover{z-index:20;}
-.sk-bubble{width:82px;height:82px;border-radius:50%;background:var(--node-border);display:flex;align-items:center;justify-content:center;font-size:1.5rem;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;box-shadow:0 4px 20px rgba(0,0,0,.07);}
-.sk-bubble::after{background:var(--node-bg);}
-.sk-node:hover .sk-bubble::before{opacity:1;}
-.sk-bubble img{width:44px;height:44px;object-fit:contain;display:block;}
-.sk-node:hover .sk-bubble{transform:scale(1.15);}
-/* floating expanded card */
-.sk-card{position:absolute;width:240px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:20px;padding:1.4rem;box-shadow:0 20px 60px rgba(0,0,0,.13);pointer-events:none;opacity:0;transform:translateY(10px) scale(.96);transition:opacity .35s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1);z-index:50;}
-.sk-node:hover .sk-card{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}
-/* card positioning — will be set via JS / data attrs */
-.sk-card.above{bottom:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(10px) scale(.96);}
-.sk-node:hover .sk-card.above{transform:translateX(-50%) translateY(0) scale(1);}
-.sk-card.below{top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-10px) scale(.96);}
-.sk-node:hover .sk-card.below{transform:translateX(-50%) translateY(0) scale(1);}
-.sk-card.left{right:calc(100% + 14px);top:50%;transform:translateY(-50%) translateX(10px) scale(.96);}
-.sk-node:hover .sk-card.left{transform:translateY(-50%) translateX(0) scale(1);}
-.sk-card.right{left:calc(100% + 14px);top:50%;transform:translateY(-50%) translateX(-10px) scale(.96);}
-.sk-node:hover .sk-card.right{transform:translateY(-50%) translateX(0) scale(1);}
 
-.sk-card-title{font-family:var(--clash);font-size:.95rem;font-weight:700;color:var(--txt);margin-bottom:.85rem;padding-bottom:.65rem;border-bottom:1px solid var(--card-border);}
-.sk-card-tags{display:flex;flex-wrap:wrap;gap:.35rem;}
-.sk-card-tag{font-family:var(--pally);font-size:.63rem;letter-spacing:.04em;font-weight:700;padding:.24rem .68rem;border-radius:100px;background:var(--bg2);color:var(--muted);border:1px solid var(--bg3);}
-/* accent dot on card */
-.sk-card::before{content:'';position:absolute;top:-1px;left:1.2rem;width:32px;height:2.5px;border-radius:0 0 3px 3px;}
-.sk-node[data-color="r"] .sk-card::before{background:var(--acc);}
-.sk-node[data-color="v"] .sk-card::before{background:var(--acc2);}
-.sk-node[data-color="g"] .sk-card::before{background:var(--acc3);}
-/* bubble ring colours */
-.sk-node[data-color="r"]:hover .sk-bubble::after{box-shadow:inset 0 0 15px rgba(232,56,26,0.3);}
-.sk-node[data-color="v"]:hover .sk-bubble::after{box-shadow:inset 0 0 15px rgba(91,63,255,0.3);}
-.sk-node[data-color="g"]:hover .sk-bubble::after{box-shadow:inset 0 0 15px rgba(0,204,143,0.3);}
-.sk-node[data-color="r"]:hover .sk-bubble{box-shadow:0 0 35px rgba(232,56,26,0.6);}
-.sk-node[data-color="v"]:hover .sk-bubble{box-shadow:0 0 35px rgba(91,63,255,0.6);}
-.sk-node[data-color="g"]:hover .sk-bubble{box-shadow:0 0 35px rgba(0,204,143,0.6);}
+/* Category Node Specifics */
+.sk-node.node-category .sk-bubble {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 1.5px solid var(--node-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: grab;
+}
+.sk-node.node-category:active .sk-bubble {
+  cursor: grabbing;
+}
+.sk-node.node-category .sk-bubble img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+}
+.sk-node.node-category:hover .sk-bubble,
+.sk-node.node-category.branch-active .sk-bubble {
+  transform: scale(1.15);
+}
+
+.sk-node.node-category .cat-label {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--clash);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #f3ede5;
+  display: block !important;
+  width: max-content !important;
+  white-space: nowrap !important;
+  opacity: 0.65;
+  transition: opacity 0.25s, color 0.25s, text-shadow 0.25s;
+  text-shadow: -2px -2px 0 #08080e, 2px -2px 0 #08080e, -2px 2px 0 #08080e, 2px 2px 0 #08080e, 0px -2px 0 #08080e, 0px 2px 0 #08080e, -2px 0px 0 #08080e, 2px 0px 0 #08080e, 0 2px 10px rgba(0,0,0,0.15);
+  pointer-events: none;
+}
+.sk-node.node-category:hover .cat-label {
+  opacity: 1;
+}
+
+/* Skill Node Specifics */
+.sk-node.node-skill {
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  cursor: pointer;
+}
+.sk-node.node-skill:active {
+  cursor: grabbing;
+}
+.sk-node.node-skill .sk-bullet {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--node-border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1; /* Permanently show skill bullets */
+  transform: scale(1.0); /* Keep skill bullets at full size by default */
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+}
+.sk-node.node-skill .sk-bullet::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.sk-node.node-skill .sk-label {
+  display: block !important;
+  width: max-content !important;
+  white-space: nowrap !important;
+  font-family: var(--pally);
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: #a4a4b5;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  opacity: 1; /* Permanently show skill leaf labels by default */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  --tx: -50%;
+  --ty: -50%;
+  --lx: 0px;
+  --ly: 0px;
+  transform: translate(calc(var(--tx) + var(--lx)), calc(var(--ty) + var(--ly))) scale(1.0); /* Full scale by default */
+  transform-origin: center center;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s, background 0.3s, border-color 0.3s, text-shadow 0.3s;
+  
+  /* Premium glassmorphic card styling */
+  background: rgba(19, 19, 28, 0.65) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 100px !important;
+  padding: 0.35rem 0.8rem !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Revealed active elements on active branch */
+.sk-node.node-skill.branch-active .sk-bullet {
+  opacity: 1;
+  transform: scale(1.15);
+}
+.sk-node.node-skill.branch-active .sk-label,
+.sk-node.node-skill:hover .sk-label {
+  opacity: 1;
+  transform: translate(calc(var(--tx) + var(--lx)), calc(var(--ty) + var(--ly))) scale(1);
+}
+
+/* Hover effects for skill nodes */
+.sk-node.node-skill.branch-active:hover .sk-bullet {
+  transform: scale(1.45);
+}
+.sk-node.node-skill.branch-active:hover .sk-bullet::after {
+  transform: scale(1.2);
+}
+
+/* Color Accents (Red, Purple, Green, Gold) */
+/* Category colors */
+.sk-node[data-color="r"] .cat-label { color: var(--acc); }
+.sk-node[data-color="v"] .cat-label { color: var(--acc2); }
+.sk-node[data-color="g"] .cat-label { color: var(--acc3); }
+.sk-node[data-color="y"] .cat-label { color: var(--acc4); }
+
+.sk-node[data-color="r"]:hover .cat-label,
+.sk-node[data-color="r"].branch-active .cat-label {
+  text-shadow: -2px -2px 0 #08080e, 2px -2px 0 #08080e, -2px 2px 0 #08080e, 2px 2px 0 #08080e, 0px -2px 0 #08080e, 0px 2px 0 #08080e, -2px 0px 0 #08080e, 2px 0px 0 #08080e, 0 0 12px rgba(232,56,26,0.5);
+}
+.sk-node[data-color="v"]:hover .cat-label,
+.sk-node[data-color="v"].branch-active .cat-label {
+  text-shadow: -2px -2px 0 #08080e, 2px -2px 0 #08080e, -2px 2px 0 #08080e, 2px 2px 0 #08080e, 0px -2px 0 #08080e, 0px 2px 0 #08080e, -2px 0px 0 #08080e, 2px 0px 0 #08080e, 0 0 12px rgba(91,63,255,0.5);
+}
+.sk-node[data-color="g"]:hover .cat-label,
+.sk-node[data-color="g"].branch-active .cat-label {
+  text-shadow: -2px -2px 0 #08080e, 2px -2px 0 #08080e, -2px 2px 0 #08080e, 2px 2px 0 #08080e, 0px -2px 0 #08080e, 0px 2px 0 #08080e, -2px 0px 0 #08080e, 2px 0px 0 #08080e, 0 0 12px rgba(0,204,143,0.5);
+}
+.sk-node[data-color="y"]:hover .cat-label,
+.sk-node[data-color="y"].branch-active .cat-label {
+  text-shadow: -2px -2px 0 #08080e, 2px -2px 0 #08080e, -2px 2px 0 #08080e, 2px 2px 0 #08080e, 0px -2px 0 #08080e, 0px 2px 0 #08080e, -2px 0px 0 #08080e, 2px 0px 0 #08080e, 0 0 12px rgba(255,170,0,0.5);
+}
+
+.sk-node[data-color="r"]:hover .sk-bubble::after { box-shadow: inset 0 0 15px rgba(232,56,26,0.3); }
+.sk-node[data-color="v"]:hover .sk-bubble::after { box-shadow: inset 0 0 15px rgba(91,63,255,0.3); }
+.sk-node[data-color="g"]:hover .sk-bubble::after { box-shadow: inset 0 0 15px rgba(0,204,143,0.3); }
+.sk-node[data-color="y"]:hover .sk-bubble::after { box-shadow: inset 0 0 15px rgba(255,153,0,0.3); }
+
+.sk-node[data-color="r"]:hover .sk-bubble { box-shadow: 0 0 35px rgba(232,56,26,0.6); }
+.sk-node[data-color="v"]:hover .sk-bubble { box-shadow: 0 0 35px rgba(91,63,255,0.6); }
+.sk-node[data-color="g"]:hover .sk-bubble { box-shadow: 0 0 35px rgba(0,204,143,0.6); }
+.sk-node[data-color="y"]:hover .sk-bubble { box-shadow: 0 0 35px rgba(255,153,0,0.6); }
+
+/* Skill colors */
+.sk-node[data-color="r"] .sk-bullet::after { background: var(--acc); }
+.sk-node[data-color="v"] .sk-bullet::after { background: var(--acc2); }
+.sk-node[data-color="g"] .sk-bullet::after { background: var(--acc3); }
+.sk-node[data-color="y"] .sk-bullet::after { background: var(--acc4); }
+
+/* Universal high-contrast glowing neon skill label styles on dark backgrounds */
+.sk-node.node-skill[data-color="r"].branch-active .sk-label,
+.sk-node.node-skill[data-color="r"]:hover .sk-label {
+  color: var(--acc) !important; /* Red */
+  text-shadow: -2px -2px 0 #08080e, 2px -2px 0 #08080e, -2px 2px 0 #08080e, 2px 2px 0 #08080e, 0px -2px 0 #08080e, 0px 2px 0 #08080e, -2px 0px 0 #08080e, 2px 0px 0 #08080e, 0 0 10px rgba(232,56,26,0.5);
+  border-color: rgba(232, 56, 26, 0.45) !important;
+  background: rgba(232, 56, 26, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(232, 56, 26, 0.25), 0 0 10px rgba(232, 56, 26, 0.15) !important;
+}
+.sk-node.node-skill[data-color="v"].branch-active .sk-label,
+.sk-node.node-skill[data-color="v"]:hover .sk-label {
+  color: #997df2 !important; /* Bright Purple/Violet */
+  text-shadow: -2px -2px 0 #08080e, 2px -2px 0 #08080e, -2px 2px 0 #08080e, 2px 2px 0 #08080e, 0px -2px 0 #08080e, 0px 2px 0 #08080e, -2px 0px 0 #08080e, 2px 0px 0 #08080e, 0 0 10px rgba(153,125,242,0.5);
+  border-color: rgba(153, 125, 242, 0.45) !important;
+  background: rgba(91, 63, 255, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(91, 63, 255, 0.25), 0 0 10px rgba(91, 63, 255, 0.15) !important;
+}
+.sk-node.node-skill[data-color="g"].branch-active .sk-label,
+.sk-node.node-skill[data-color="g"]:hover .sk-label {
+  color: var(--acc3) !important; /* Green */
+  text-shadow: -2px -2px 0 #08080e, 2px -2px 0 #08080e, -2px 2px 0 #08080e, 2px 2px 0 #08080e, 0px -2px 0 #08080e, 0px 2px 0 #08080e, -2px 0px 0 #08080e, 2px 0px 0 #08080e, 0 0 10px rgba(0,204,143,0.5);
+  border-color: rgba(0, 204, 143, 0.45) !important;
+  background: rgba(0, 204, 143, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(0, 204, 143, 0.25), 0 0 10px rgba(0, 204, 143, 0.15) !important;
+}
+.sk-node.node-skill[data-color="y"].branch-active .sk-label,
+.sk-node.node-skill[data-color="y"]:hover .sk-label {
+  color: var(--acc4) !important; /* Gold */
+  text-shadow: -2px -2px 0 #08080e, 2px -2px 0 #08080e, -2px 2px 0 #08080e, 2px 2px 0 #08080e, 0px -2px 0 #08080e, 0px 2px 0 #08080e, -2px 0px 0 #08080e, 2px 0px 0 #08080e, 0 0 10px rgba(255,170,0,0.5);
+  border-color: rgba(255, 170, 0, 0.45) !important;
+  background: rgba(255, 170, 0, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(255, 170, 0, 0.25), 0 0 10px rgba(255, 170, 0, 0.15) !important;
+}
+
+.sk-node.node-skill[data-color="r"]:hover .sk-bullet { box-shadow: 0 0 15px rgba(232,56,26,0.5); }
+.sk-node.node-skill[data-color="v"]:hover .sk-bullet { box-shadow: 0 0 15px rgba(91,63,255,0.5); }
+.sk-node.node-skill[data-color="g"]:hover .sk-bullet { box-shadow: 0 0 15px rgba(0,204,143,0.5); }
+.sk-node.node-skill[data-color="y"]:hover .sk-bullet { box-shadow: 0 0 15px rgba(255,153,0,0.5); }
+
+/* Hover glows for category nodes */
+.sk-node[data-color="r"]:hover .sk-bubble { box-shadow: 0 0 35px rgba(232,56,26,0.6); }
+.sk-node[data-color="v"]:hover .sk-bubble { box-shadow: 0 0 35px rgba(91,63,255,0.6); }
+.sk-node[data-color="g"]:hover .sk-bubble { box-shadow: 0 0 35px rgba(0,204,143,0.6); }
+.sk-node[data-color="y"]:hover .sk-bubble { box-shadow: 0 0 35px rgba(255,170,0,0.6); }
 
 /* FEATURED CARDS */
 .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:0;}
@@ -359,7 +562,6 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
   section{padding:6rem 3rem;}
   #skills{padding:6rem 0;}
   #skills .inner-label{padding:0 3rem;}
-  .neural-wrap{height:600px;}
   #about{gap:4rem;}
   footer{padding:2rem 3rem;}
 }
@@ -369,28 +571,15 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
   .burger{display:flex;}
   #hero{padding:0 2rem 5rem;}
   section{padding:5rem 2rem;}
-  #skills{padding:5rem 0;}
   #skills .inner-label{padding:0 2rem;}
-  .neural-wrap { height: 500px; margin-top: 1rem; display: block; }
-  .sk-bubble { width: 64px; height: 64px; }
-  .sk-bubble img { width: 32px; height: 32px; }
-  .c-node { width: 85px; height: 85px; }
-  .c-node .cn-init { font-size: 1.4rem; }
-  .sk-card {
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    bottom: auto !important;
-    right: auto !important;
-    transform: translate(-50%, -50%) scale(0.96) !important;
-    width: 90% !important;
-    max-width: 360px !important;
-    z-index: 1000 !important;
-    box-shadow: 0 30px 100px rgba(0,0,0,0.6) !important;
-  }
-  .sk-node:hover .sk-card {
-    transform: translate(-50%, -50%) scale(1) !important;
-  }
+  #skills-outer-wrap { height: 550px; }
+  .neural-wrap { width: 1050px !important; height: 900px !important; }
+  .sk-bubble { width: 50px !important; height: 50px !important; }
+  .sk-bubble img { width: 24px !important; height: 24px !important; }
+  .c-node { width: 90px !important; height: 90px !important; }
+  .c-node .cn-init { font-size: 1.4rem !important; }
+  .c-node .cn-sub { font-size: 0.45rem !important; }
+  .sk-node.node-category .cat-label { font-size: 0.8rem !important; }
   #about{grid-template-columns:1fr;gap:3rem;}
   .h-bot{flex-direction:column;align-items:flex-start;gap:1.2rem;}
   .h-meta{text-align:left;}
@@ -412,6 +601,132 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
   .prow{grid-template-columns:40px 1fr;gap:1rem;}
   .pname{font-size:1.35rem;}
   footer{padding:1.5rem 1.4rem;}
+}
+/* Mobile Swipe Hint */
+.swipe-hint {
+  display: none;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  width: max-content;
+  padding: 0;
+  z-index: 15;
+  font-family: var(--pally);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.85;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  animation: pulseHint 2.5s ease-in-out infinite;
+}
+.swipe-hint.hidden {
+  opacity: 0 !important;
+  transform: translate(-50%, 10px) !important;
+  pointer-events: none;
+}
+.swipe-text {
+  background: rgba(19, 19, 28, 0.85);
+  padding: 0.4rem 1.2rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  color: #ffffff !important;
+}
+.swipe-arrow {
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--acc);
+}
+.swipe-arrow-left {
+  animation: bounceLeft 1.5s ease-in-out infinite;
+}
+.swipe-arrow-right {
+  animation: bounceRight 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseHint {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+@keyframes bounceLeft {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-4px); }
+}
+@keyframes bounceRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+
+@media(max-width:768px){
+  .swipe-hint {
+    display: flex;
+  }
+}
+
+/* Interactive Network Guide Pill */
+.skills-guide-pill {
+  display: flex !important;
+  margin: 1.5rem auto 0 !important;
+  width: max-content !important;
+  background: rgba(19, 19, 28, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 100px !important;
+  padding: 0.5rem 1.4rem !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  z-index: 15;
+  pointer-events: none;
+  font-family: var(--pally);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+  user-select: none;
+  max-width: 90%;
+}
+.skills-guide-pill .guide-text {
+  color: #ffffff !important;
+}
+.swipe-hint .swipe-text {
+  color: #ffffff !important;
+}
+[data-theme="dark"] .skills-guide-pill {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.guide-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--acc);
+  box-shadow: 0 0 8px var(--acc);
+  animation: blinkGuide 2.5s infinite ease-in-out;
+}
+@keyframes blinkGuide {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+@media(max-width:768px){
+  .skills-guide-pill {
+    width: max-content;
+    max-width: 90%;
+    padding: 0.4rem 1.1rem;
+    font-size: 0.66rem;
+    top: 1rem;
+  }
 }
 </style>
 </head>
@@ -540,15 +855,30 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
     <h2 class="s-title rv d1">Skill Network</h2>
   </div>
 
-  <!-- Desktop neural graph -->
-  <div class="neural-wrap rv d2" id="neuralWrap">
-    <svg id="neural-svg" xmlns="http://www.w3.org/2000/svg"></svg>
-    <!-- Centre node -->
-    <div class="c-node" id="cNode">
-      <span class="cn-init">AAW</span>
-      <span class="cn-sub">AI Engineer</span>
+  <!-- Interactive Network Guide Pill -->
+  <div class="skills-guide-pill" id="skillsGuidePill">
+    <span class="guide-dot"></span>
+    <span class="guide-text">Hover over categories or drag nodes to explore my skills</span>
+  </div>
+
+  <!-- Swipeable neural graph wrapper -->
+  <div id="skills-outer-wrap">
+    <div class="neural-wrap rv d2" id="neuralWrap">
+
+      <!-- Centre node -->
+      <div class="c-node" id="cNode">
+        <span class="cn-init">AAW</span>
+        <span class="cn-sub">AI Engineer</span>
+      </div>
+      <!-- Skill nodes and canvas connection layers will be injected dynamically by JS -->
     </div>
-    <!-- Skill nodes injected by JS -->
+  </div>
+  
+  <!-- Swipe Instruction overlay for mobile screens -->
+  <div class="swipe-hint" id="swipeHint">
+    <div class="swipe-arrow swipe-arrow-left">‹</div>
+    <span class="swipe-text">Swipe to explore skills network</span>
+    <div class="swipe-arrow swipe-arrow-right">›</div>
   </div>
 </section>
 
@@ -794,122 +1124,736 @@ const html=document.documentElement;
 themeBtn.addEventListener('click',()=>{
   const isDark=html.getAttribute('data-theme')==='dark';
   html.setAttribute('data-theme',isDark?'light':'dark');
-  drawLines(); // redraw SVG lines with new colour
+  updateColorMap(); // Re-read and cache CSS color variables
+  drawLines(); // redraw lines with new colour
 });
 
-/* ── NEURAL GRAPH ── */
-const skillData=[
-  {id:'s0',icon:'img',iconSrc:'assets/icons/Agent & Orchestration.png',iconAlt:'Agent & Orchestration',title:'Agent & Orchestration',color:'r',
-   tags:['Agentic Pipelines','Multi-step Workflows','Tool Use & Function Calling','Local LLMs via Ollama','Llama 3.1','Prompt Engineering','Claude API','Gemini API','Groq']},
-  {id:'s1',icon:'img',iconSrc:'assets/icons/ai-ML.png',iconAlt:'AI & Machine Learning',title:'AI & Machine Learning',color:'v',
-   tags:['PyTorch','TensorFlow','NLP','Computer Vision','OCR','Speech Recognition','MediaPipe','Model Inference Optimization']},
-  {id:'s2',icon:'img',iconSrc:'assets/icons/automation&web.png',iconAlt:'Automation & Web',title:'Automation & Web',color:'g',
-   tags:['Playwright','Selenium','BeautifulSoup','Web Scraping','Browser Automation','Desktop Automation','Voice Control','Windows Automation']},
-  {id:'s3',icon:'img',iconSrc:'assets/icons/frameworks&tools.png',iconAlt:'Frameworks & Tools',title:'Frameworks & Tools',color:'r',
-   tags:['FastAPI','Streamlit','PySide6','PyQt6','LangChain','LCEL Pipelines','REST APIs','Docker','Git','OpenCV']},
-  {id:'s4',icon:'img',iconSrc:'assets/icons/programming.png',iconAlt:'Programming',title:'Programming',color:'v',
-   tags:['Python','JavaScript','HTML','CSS','Next.js','React']},
-  {id:'s5',icon:'img',iconSrc:'assets/icons/specialized models.png',iconAlt:'Specialized Models',title:'Specialized Models',color:'g',
-   tags:['SAM 2.1','Real-ESRGAN','Big-LaMa','MediaPipe','RoBERTa','BART','sentence-transformers','LoRA Fine-tuning','Model Chaining','Multi-model Pipelines']},
-  {id:'s6',icon:'img',iconSrc:'assets/icons/RAG.png',iconAlt:'RAG & Vector Systems',title:'RAG & Vector Systems',color:'r',
-   tags:['GraphRAG','RAG Pipelines','Vector Embeddings','LanceDB','all-MiniLM','Semantic Search','Knowledge Graphs','Reranking']},
+/* ── FORCE-DIRECTED NEURAL GRAPH ── */
+const skillNodes = [
+  // Categories (Parent nodes from original backup)
+  { id: 'cat0', type: 'category', label: 'Agent & Orchestration', color: 'r', icon: 'assets/icons/Agent & Orchestration.png', tags: [] },
+  { id: 'cat1', type: 'category', label: 'AI & Machine Learning', color: 'v', icon: 'assets/icons/ai-ML.png', tags: [] },
+  { id: 'cat2', type: 'category', label: 'Automation & Web', color: 'g', icon: 'assets/icons/automation&web.png', tags: [] },
+  { id: 'cat3', type: 'category', label: 'Frameworks & Tools', color: 'y', icon: 'assets/icons/frameworks&tools.png', tags: [] },
+  { id: 'cat4', type: 'category', label: 'Programming', color: 'v', icon: 'assets/icons/programming.png', tags: [] },
+  { id: 'cat5', type: 'category', label: 'Specialized Models', color: 'g', icon: 'assets/icons/specialized models.png', tags: [] },
+  { id: 'cat6', type: 'category', label: 'RAG & Vector Systems', color: 'r', icon: 'assets/icons/RAG.png', tags: [] },
+
+  // Skill Leaf Nodes for Cat0 (Agent & Orchestration - 9 original tags)
+  { id: 's0_0', type: 'skill', label: 'Agentic Pipelines', parent: 'cat0', color: 'r' },
+  { id: 's0_1', type: 'skill', label: 'Multi-step Workflows', parent: 'cat0', color: 'r' },
+  { id: 's0_2', type: 'skill', label: 'Tool Use & Function Calling', parent: 'cat0', color: 'r' },
+  { id: 's0_3', type: 'skill', label: 'Local LLMs via Ollama', parent: 'cat0', color: 'r' },
+  { id: 's0_4', type: 'skill', label: 'Llama 3.1', parent: 'cat0', color: 'r' },
+  { id: 's0_5', type: 'skill', label: 'Prompt Engineering', parent: 'cat0', color: 'r' },
+  { id: 's0_6', type: 'skill', label: 'Claude API', parent: 'cat0', color: 'r' },
+  { id: 's0_7', type: 'skill', label: 'Gemini API', parent: 'cat0', color: 'r' },
+  { id: 's0_8', type: 'skill', label: 'Groq', parent: 'cat0', color: 'r' },
+
+  // Skill Leaf Nodes for Cat1 (AI & Machine Learning - 8 original tags)
+  { id: 's1_0', type: 'skill', label: 'PyTorch', parent: 'cat1', color: 'v' },
+  { id: 's1_1', type: 'skill', label: 'TensorFlow', parent: 'cat1', color: 'v' },
+  { id: 's1_2', type: 'skill', label: 'NLP', parent: 'cat1', color: 'v' },
+  { id: 's1_3', type: 'skill', label: 'Computer Vision', parent: 'cat1', color: 'v' },
+  { id: 's1_4', type: 'skill', label: 'OCR', parent: 'cat1', color: 'v' },
+  { id: 's1_5', type: 'skill', label: 'Speech Recognition', parent: 'cat1', color: 'v' },
+  { id: 's1_6', type: 'skill', label: 'MediaPipe', parent: 'cat1', color: 'v' },
+  { id: 's1_7', type: 'skill', label: 'Model Inference Optimization', parent: 'cat1', color: 'v' },
+
+  // Skill Leaf Nodes for Cat2 (Automation & Web - 8 original tags)
+  { id: 's2_0', type: 'skill', label: 'Playwright', parent: 'cat2', color: 'g' },
+  { id: 's2_1', type: 'skill', label: 'Selenium', parent: 'cat2', color: 'g' },
+  { id: 's2_2', type: 'skill', label: 'BeautifulSoup', parent: 'cat2', color: 'g' },
+  { id: 's2_3', type: 'skill', label: 'Web Scraping', parent: 'cat2', color: 'g' },
+  { id: 's2_4', type: 'skill', label: 'Browser Automation', parent: 'cat2', color: 'g' },
+  { id: 's2_5', type: 'skill', label: 'Desktop Automation', parent: 'cat2', color: 'g' },
+  { id: 's2_6', type: 'skill', label: 'Voice Control', parent: 'cat2', color: 'g' },
+  { id: 's2_7', type: 'skill', label: 'Windows Automation', parent: 'cat2', color: 'g' },
+
+  // Skill Leaf Nodes for Cat3 (Frameworks & Tools - 10 original tags)
+  { id: 's3_0', type: 'skill', label: 'FastAPI', parent: 'cat3', color: 'y' },
+  { id: 's3_1', type: 'skill', label: 'Streamlit', parent: 'cat3', color: 'y' },
+  { id: 's3_2', type: 'skill', label: 'PySide6', parent: 'cat3', color: 'y' },
+  { id: 's3_3', type: 'skill', label: 'PyQt6', parent: 'cat3', color: 'y' },
+  { id: 's3_4', type: 'skill', label: 'LangChain', parent: 'cat3', color: 'y' },
+  { id: 's3_5', type: 'skill', label: 'LCEL Pipelines', parent: 'cat3', color: 'y' },
+  { id: 's3_6', type: 'skill', label: 'REST APIs', parent: 'cat3', color: 'y' },
+  { id: 's3_7', type: 'skill', label: 'Docker', parent: 'cat3', color: 'y' },
+  { id: 's3_8', type: 'skill', label: 'Git', parent: 'cat3', color: 'y' },
+  { id: 's3_9', type: 'skill', label: 'OpenCV', parent: 'cat3', color: 'y' },
+
+  // Skill Leaf Nodes for Cat4 (Programming - 6 original tags)
+  { id: 's4_0', type: 'skill', label: 'Python', parent: 'cat4', color: 'v' },
+  { id: 's4_1', type: 'skill', label: 'JavaScript', parent: 'cat4', color: 'v' },
+  { id: 's4_2', type: 'skill', label: 'HTML', parent: 'cat4', color: 'v' },
+  { id: 's4_3', type: 'skill', label: 'CSS', parent: 'cat4', color: 'v' },
+  { id: 's4_4', type: 'skill', label: 'Next.js', parent: 'cat4', color: 'v' },
+  { id: 's4_5', type: 'skill', label: 'React', parent: 'cat4', color: 'v' },
+
+  // Skill Leaf Nodes for Cat5 (Specialized Models - 10 original tags)
+  { id: 's5_0', type: 'skill', label: 'SAM 2.1', parent: 'cat5', color: 'g' },
+  { id: 's5_1', type: 'skill', label: 'Real-ESRGAN', parent: 'cat5', color: 'g' },
+  { id: 's5_2', type: 'skill', label: 'Big-LaMa', parent: 'cat5', color: 'g' },
+  { id: 's5_3', type: 'skill', label: 'MediaPipe', parent: 'cat5', color: 'g' },
+  { id: 's5_4', type: 'skill', label: 'RoBERTa', parent: 'cat5', color: 'g' },
+  { id: 's5_5', type: 'skill', label: 'BART', parent: 'cat5', color: 'g' },
+  { id: 's5_6', type: 'skill', label: 'sentence-transformers', parent: 'cat5', color: 'g' },
+  { id: 's5_7', type: 'skill', label: 'LoRA Fine-tuning', parent: 'cat5', color: 'g' },
+  { id: 's5_8', type: 'skill', label: 'Model Chaining', parent: 'cat5', color: 'g' },
+  { id: 's5_9', type: 'skill', label: 'Multi-model Pipelines', parent: 'cat5', color: 'g' },
+
+  // Skill Leaf Nodes for Cat6 (RAG & Vector Systems - 8 original tags)
+  { id: 's6_0', type: 'skill', label: 'GraphRAG', parent: 'cat6', color: 'r' },
+  { id: 's6_1', type: 'skill', label: 'RAG Pipelines', parent: 'cat6', color: 'r' },
+  { id: 's6_2', type: 'skill', label: 'Vector Embeddings', parent: 'cat6', color: 'r' },
+  { id: 's6_3', type: 'skill', label: 'LanceDB', parent: 'cat6', color: 'r' },
+  { id: 's6_4', type: 'skill', label: 'all-MiniLM', parent: 'cat6', color: 'r' },
+  { id: 's6_5', type: 'skill', label: 'Semantic Search', parent: 'cat6', color: 'r' },
+  { id: 's6_6', type: 'skill', label: 'Knowledge Graphs', parent: 'cat6', color: 'r' },
+  { id: 's6_7', type: 'skill', label: 'Reranking', parent: 'cat6', color: 'r' },
 ];
 
-// card expand direction by angle
-function cardDir(angle){
-  // angle in degrees, 0 = right
-  if(angle>-45&&angle<=45) return 'right';
-  if(angle>45&&angle<=135) return 'below';
-  if(angle>135||angle<=-135) return 'left';
-  return 'above';
+const nodes = [];
+const nodeMap = {};
+let draggedNode = null;
+let hoveredNode = null;
+const activeBranchNodes = new Set();
+
+// PERFORMANCE CACHING VARIABLES
+let wrapWidth = 1600;
+let wrapHeight = 1100;
+let colorMap = {};
+
+function updateWrapDimensions() {
+  const wrap = document.getElementById('neuralWrap');
+  if (wrap) {
+    wrapWidth = wrap.offsetWidth;
+    wrapHeight = wrap.offsetHeight;
+  }
 }
 
-function buildNeural(){
-  const wrap=document.getElementById('neuralWrap');
-  const svg=document.getElementById('neural-svg');
-  // remove old nodes
-  wrap.querySelectorAll('.sk-node').forEach(n=>n.remove());
-  svg.innerHTML='';
+function updateColorMap() {
+  const style = getComputedStyle(document.documentElement);
+  colorMap = {
+    'r': style.getPropertyValue('--acc').trim() || '#e8381a',
+    'v': style.getPropertyValue('--acc2').trim() || '#5b3fff',
+    'g': style.getPropertyValue('--acc3').trim() || '#00cc8f',
+    'y': style.getPropertyValue('--acc4').trim() || '#ffaa00'
+  };
+}
 
-  const W=wrap.offsetWidth, H=wrap.offsetHeight;
-  const cx=W/2, cy=H/2;
-  const count=skillData.length;
-  const rx=Math.min(W*.34,260), ry=Math.min(H*.38,220);
+// Initial cache population on script execution
+updateColorMap();
 
-  skillData.forEach((sk,i)=>{
-    const angle=((360/count)*i - 90) * Math.PI/180;
-    const angleDeg=((360/count)*i - 90);
-    const nx=cx + rx*Math.cos(angle);
-    const ny=cy + ry*Math.sin(angle);
 
-    // SVG line
-    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
-    line.setAttribute('x1',cx); line.setAttribute('y1',cy);
-    line.setAttribute('x2',nx); line.setAttribute('y2',ny);
-    line.setAttribute('stroke','rgba(255,255,255,.1)');
-    line.setAttribute('stroke-width','1.5');
-    line.setAttribute('stroke-dasharray','6 5');
-    line.classList.add('neural-line');
-    svg.appendChild(line);
+const centerNode = { id: 'center', type: 'center', label: 'AAW', x: 0, y: 0, vx: 0, vy: 0, fx: 0, fy: 0, mass: 10 };
+nodes.push(centerNode);
+nodeMap['center'] = centerNode;
 
-    // node element
-    const dir=cardDir(angleDeg);
-    const node=document.createElement('div');
-    node.className='sk-node';
-    node.setAttribute('data-color',sk.color);
-    const r = window.innerWidth <= 768 ? 32 : 41;
-    node.style.left=(nx - r)+'px';
-    node.style.top=(ny - r)+'px';
+skillNodes.forEach(sn => {
+  const node = {
+    ...sn,
+    x: 0, y: 0, vx: 0, vy: 0, fx: 0, fy: 0,
+    mass: sn.type === 'category' ? 4 : 1,
+    dragged: false
+  };
+  nodes.push(node);
+  nodeMap[sn.id] = node;
+});
 
-    const tagsHtml=sk.tags.map(t=>`<span class="sk-card-tag">${t}</span>`).join('');
-    const icoHtml=sk.icon==='img'
-      ? `<img src="${sk.iconSrc}" alt="${sk.iconAlt}">`
-      : sk.icon;
-    node.innerHTML=`
-      <div class="sk-bubble">${icoHtml}</div>
-      <div class="sk-card ${dir}">
-        <div class="sk-card-title">${sk.title}</div>
-        <div class="sk-card-tags">${tagsHtml}</div>
-      </div>`;
-    wrap.appendChild(node);
-
-    // line glow effect
-    const hex = sk.color === 'r' ? 'var(--acc)' : sk.color === 'v' ? 'var(--acc2)' : 'var(--acc3)';
-    node.addEventListener('mouseenter', () => {
-      line.setAttribute('stroke', hex);
-      line.setAttribute('stroke-width', '3');
-      line.setAttribute('stroke-dasharray', '12 12');
-      line.style.animation = 'moveDash 0.8s linear infinite';
-      if(window.innerWidth > 768) {
-        c.classList.add('big'); c2.classList.add('big');
-      }
-    });
-    node.addEventListener('mouseleave', () => {
-      line.setAttribute('stroke', 'rgba(255,255,255,.1)');
-      line.setAttribute('stroke-width', '1.5');
-      line.setAttribute('stroke-dasharray', '6 5');
-      line.style.animation = 'none';
-      if(window.innerWidth > 768) {
-        c.classList.remove('big'); c2.classList.remove('big');
-      }
+function initPositions(cx, cy) {
+  const scale = window.innerWidth <= 768 ? 0.78 : 1.0; // Scaled to 0.78 on mobile to widely separate hubs
+  centerNode.x = cx;
+  centerNode.y = cy;
+  
+  const cats = nodes.filter(n => n.type === 'category');
+  const count = cats.length;
+  cats.forEach((cat, idx) => {
+    const angle = (idx / count) * 2 * Math.PI - Math.PI / 2;
+    cat.angle = angle; // designated absolute angle around core
+    cat.x = cx + Math.cos(angle) * (330 * scale); // Increased base radius from 250 to 330 to widely space categories
+    cat.y = cy + Math.sin(angle) * (270 * scale); // Increased base radius from 200 to 270 to widely space categories
+    
+    const skills = nodes.filter(n => n.parent === cat.id);
+    const skillCount = skills.length;
+    skills.forEach((skill, sIdx) => {
+      // Symmetrical fanning arc widened to Math.PI * 0.72 (~130 degrees)
+      const sAngle = angle - (Math.PI * 0.36) + (Math.PI * 0.72) * (sIdx / (skillCount - 1 || 1));
+      skill.targetAngle = sAngle; // Save ideal target fanning angle
+      skill.x = cat.x + Math.cos(sAngle) * (restSkill * scale);
+      skill.y = cat.y + Math.sin(sAngle) * (restSkill * scale);
     });
   });
 }
 
-function drawLines(){
-  const svg=document.getElementById('neural-svg');
-  // Since #skills always has a dark background now, lines can remain a light color
-  svg.querySelectorAll('line').forEach(l=>l.setAttribute('stroke','rgba(255,255,255,.1)'));
+let clickedNode = null;
+
+function updateActiveBranch(n) {
+  // Clear branch-active class from all elements first to prevent stale states
+  nodes.forEach(x => {
+    if (x.element) x.element.classList.remove('branch-active');
+  });
+
+  activeBranchNodes.clear();
+  activeBranchNodes.add('center');
+  
+  const targetNode = n || clickedNode;
+  if (!targetNode) return;
+  
+  if (targetNode.type === 'category') {
+    activeBranchNodes.add(targetNode.id);
+    nodes.filter(child => child.parent === targetNode.id).forEach(child => {
+      activeBranchNodes.add(child.id);
+      if (child.element) child.element.classList.add('branch-active');
+    });
+  } else if (targetNode.type === 'skill') {
+    activeBranchNodes.add(targetNode.id);
+    activeBranchNodes.add(targetNode.parent);
+    if (targetNode.element) targetNode.element.classList.add('branch-active');
+    const parentNode = nodeMap[targetNode.parent];
+    if (parentNode) {
+      activeBranchNodes.add(parentNode.id);
+      if (parentNode.element) parentNode.element.classList.add('branch-active');
+    }
+  }
 }
 
-// Build on load and resize
+function setupNodeEvents(n) {
+  const el = n.element;
+  let dragDistance = 0;
+  let startX = 0, startY = 0;
+  
+  el.addEventListener('pointerdown', e => {
+    e.stopPropagation();
+    draggedNode = n;
+    n.dragged = true;
+    el.setPointerCapture(e.pointerId);
+    
+    startX = e.clientX;
+    startY = e.clientY;
+    dragDistance = 0;
+  });
+  
+  el.addEventListener('pointerup', e => {
+    if (!n.dragged) return;
+    n.dragged = false;
+    draggedNode = null;
+    el.releasePointerCapture(e.pointerId);
+    
+    const dist = Math.hypot(e.clientX - startX, e.clientY - startY);
+    if (dist < 6) {
+      // Clean click or tap!
+      if (n.type === 'category' || n.type === 'skill') {
+        if (clickedNode === n) {
+          clickedNode = null;
+        } else {
+          clickedNode = n;
+        }
+        updateActiveBranch(hoveredNode);
+      }
+    }
+  });
+  
+  el.addEventListener('mouseenter', () => {
+    hoveredNode = n;
+    updateActiveBranch(n);
+    if (window.innerWidth > 768) {
+      c.classList.add('big'); c2.classList.add('big');
+    }
+  });
+  
+  el.addEventListener('mouseleave', () => {
+    if (hoveredNode === n) {
+      hoveredNode = null;
+      updateActiveBranch(null);
+    }
+    if (window.innerWidth > 768) {
+      c.classList.remove('big'); c2.classList.remove('big');
+    }
+  });
+}
+
+function createDOMNodes() {
+  const wrap = document.getElementById('neuralWrap');
+  wrap.querySelectorAll('.sk-node').forEach(n => n.remove());
+
+  nodes.forEach(n => {
+    if (n.type === 'center') {
+      const cNode = document.getElementById('cNode');
+      if (cNode) {
+        cNode.addEventListener('pointerdown', e => {
+          e.stopPropagation();
+          draggedNode = centerNode;
+          centerNode.dragged = true;
+          cNode.setPointerCapture(e.pointerId);
+        });
+      }
+      return;
+    }
+    
+    const nodeEl = document.createElement('div');
+    nodeEl.id = n.id;
+    nodeEl.setAttribute('data-color', n.color);
+    
+    if (n.type === 'category') {
+      nodeEl.className = 'sk-node node-category';
+      nodeEl.innerHTML = `
+        <div class="sk-bubble">
+          <img src="${n.icon}" alt="${n.label}">
+        </div>
+        <div class="cat-label">${n.label}</div>
+      `;
+    } else {
+      nodeEl.className = 'sk-node node-skill';
+      nodeEl.innerHTML = `
+        <div class="sk-bullet"></div>
+        <div class="sk-label">${n.label}</div>
+      `;
+    }
+    wrap.appendChild(nodeEl);
+    n.element = nodeEl;
+    setupNodeEvents(n);
+  });
+}
+
+// Global dragging captures
+function setupGlobalDragEvents() {
+  const wrap = document.getElementById('neuralWrap');
+  wrap.addEventListener('pointermove', e => {
+    if (!draggedNode) return;
+    const rect = wrap.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    draggedNode.x = x;
+    draggedNode.y = y;
+  });
+  
+  const releaseDrag = (e) => {
+    if (draggedNode) {
+      if (draggedNode.element) draggedNode.element.releasePointerCapture(e.pointerId);
+      else if (draggedNode.type === 'center') document.getElementById('cNode').releasePointerCapture(e.pointerId);
+      draggedNode.dragged = false;
+      draggedNode = null;
+    }
+  };
+  wrap.addEventListener('pointerup', releaseDrag);
+  wrap.addEventListener('pointerleave', releaseDrag);
+
+  // Background pointer listener to close active branch selection on empty space click
+  const outer = document.getElementById('skills-outer-wrap');
+  if (outer) {
+    outer.addEventListener('pointerdown', (e) => {
+      if (e.target === outer || e.target === wrap || e.target.id === 'neural-canvas') {
+        clickedNode = null;
+        updateActiveBranch(hoveredNode);
+      }
+    });
+  }
+}
+
+// Canvas line renderer
+let canvas = null, ctx = null;
+function setupCanvas() {
+  const wrap = document.getElementById('neuralWrap');
+  canvas = document.getElementById('neural-canvas');
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.id = 'neural-canvas';
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.zIndex = '0';
+    canvas.style.pointerEvents = 'none';
+    wrap.insertBefore(canvas, wrap.firstChild);
+  }
+  ctx = canvas.getContext('2d');
+  resizeCanvas();
+}
+
+function resizeCanvas() {
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = wrapWidth * dpr;
+  canvas.height = wrapHeight * dpr;
+  ctx.scale(dpr, dpr);
+}
+
+const kSpringCat = 0.035; // Dynamic category slot spring
+const restCat = 230;
+const kSpringSkill = 0.06; // Dynamic fanning skill slot spring
+const restSkill = 165; // Increased rest length to widely separate sub-skills and prevent overlaps
+const kGravity = 0.0; // Gravity is unneeded since relative slot springs maintain absolute starburst centering
+const damping = 0.80; // Highly responsive slow-motion visual viscosity
+
+function updatePhysics(cx, cy) {
+  const scale = window.innerWidth <= 768 ? 0.78 : 1.0; // Scaled to 0.78 on mobile to match dynamic spreads
+  nodes.forEach(n => {
+    n.fx = 0; n.fy = 0;
+  });
+
+  if (centerNode.dragged) {
+    // let center drag freely
+  } else {
+    centerNode.x = cx;
+    centerNode.y = cy;
+    centerNode.vx = 0;
+    centerNode.vy = 0;
+  }
+
+  // Coulomb Repulsion
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const n1 = nodes[i];
+      const n2 = nodes[j];
+      const dx = n1.x - n2.x;
+      const dy = n1.y - n2.y;
+      let dist = Math.hypot(dx, dy);
+      if (dist === 0) dist = 1;
+
+      let rep = 350;
+      if (n1.type === 'center' || n2.type === 'center') {
+        rep = 65000 * scale * scale; // Increased to widely separate nodes from center
+      } else if (n1.type === 'category' && n2.type === 'category') {
+        rep = 160000 * scale * scale; // Massive repulsion between categories
+      } else if (n1.parent === n2.parent) {
+        rep = 28000 * scale * scale; // Robust fanning repulsions of sibling leaf nodes to prevent collisions
+      } else {
+        rep = 35000 * scale * scale; // Strong repulsion between different categories' skills
+      }
+
+      const force = rep / (dist * dist);
+      const fx = force * (dx / dist);
+      const fy = force * (dy / dist);
+
+      n1.fx += fx; n1.fy += fy;
+      n2.fx -= fx; n2.fy -= fy;
+    }
+  }
+
+  // Hooke spring attraction to dynamic, relative fanning coordinate slots
+  nodes.forEach(n => {
+    if (n.type === 'category') {
+      const targetAngle = n.angle !== undefined ? n.angle : 0;
+      const idealX = cx + Math.cos(targetAngle) * (330 * scale); // Matches 330 horizontal radius
+      const idealY = cy + Math.sin(targetAngle) * (270 * scale); // Matches 270 vertical radius
+      n.fx += kSpringCat * (idealX - n.x);
+      n.fy += kSpringCat * (idealY - n.y);
+    } else if (n.type === 'skill') {
+      const parentNode = nodeMap[n.parent];
+      if (parentNode) {
+        const targetAngle = n.targetAngle !== undefined ? n.targetAngle : 0;
+        const idealX = parentNode.x + Math.cos(targetAngle) * (restSkill * scale);
+        const idealY = parentNode.y + Math.sin(targetAngle) * (restSkill * scale);
+        n.fx += kSpringSkill * (idealX - n.x);
+        n.fy += kSpringSkill * (idealY - n.y);
+      }
+    }
+  });
+
+  // Center Gravity
+  nodes.forEach(n => {
+    if (n.type !== 'center') {
+      n.fx += kGravity * (cx - n.x);
+      n.fy += kGravity * (cy - n.y);
+    }
+  });
+
+  // Apply velocities & Capping limits to keep ALL nodes strictly inside bounds
+  const wrap = document.getElementById('neuralWrap');
+  const W = wrap.offsetWidth, H = wrap.offsetHeight;
+  const margin = 40;
+
+  nodes.forEach(n => {
+    if (n.type === 'center' && !centerNode.dragged) return;
+    if (n.dragged) {
+      n.vx = 0; n.vy = 0;
+      n.x = Math.max(margin, Math.min(W - margin, n.x));
+      n.y = Math.max(margin, Math.min(H - margin, n.y));
+      return;
+    }
+    
+    n.vx = (n.vx + n.fx / n.mass) * damping;
+    n.vy = (n.vy + n.fy / n.mass) * damping;
+    n.x += n.vx;
+    n.y += n.vy;
+    
+    // Strict boundaries capping to prevent "orphan" color dots from floating off-screen
+    n.x = Math.max(margin, Math.min(W - margin, n.x));
+    n.y = Math.max(margin, Math.min(H - margin, n.y));
+  });
+}
+
+let pulseTime = 0;
+function drawConnections() {
+  ctx.clearRect(0, 0, wrapWidth, wrapHeight);
+  
+  const lineColBase = 'rgba(255,255,255,0.12)';
+  pulseTime += 0.45;
+
+  nodes.forEach(n => {
+    if (n.type === 'center') return;
+    
+    let parentNode = null;
+    if (n.type === 'category') parentNode = centerNode;
+    else if (n.type === 'skill') parentNode = nodeMap[n.parent];
+    
+    if (!parentNode) return;
+    
+    const isHoverActive = hoveredNode !== null || clickedNode !== null;
+    const isNodeInBranch = activeBranchNodes.has(n.id) && activeBranchNodes.has(parentNode.id);
+    
+    ctx.beginPath();
+    ctx.moveTo(n.x, n.y);
+    ctx.lineTo(parentNode.x, parentNode.y);
+    
+    if (isHoverActive) {
+      if (isNodeInBranch) {
+        const accentCol = colorMap[n.color] || '#e8381a';
+        ctx.strokeStyle = accentCol;
+        ctx.lineWidth = n.type === 'category' ? 2.5 : 1.8;
+        ctx.setLineDash([12, 12]);
+        ctx.lineDashOffset = -pulseTime * 0.75;
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = accentCol;
+      } else {
+        ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+        ctx.lineWidth = 0.8;
+        ctx.setLineDash([6, 5]);
+        ctx.lineDashOffset = 0;
+        ctx.shadowBlur = 0;
+      }
+    } else {
+      ctx.strokeStyle = lineColBase;
+      ctx.lineWidth = n.type === 'category' ? 1.5 : 1.0;
+      ctx.setLineDash([6, 5]);
+      ctx.lineDashOffset = 0;
+      ctx.shadowBlur = 0;
+    }
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+  });
+
+  // Glowing signal comets on top
+  nodes.forEach(n => {
+    if (n.type === 'center') return;
+    let parentNode = n.type === 'category' ? centerNode : nodeMap[n.parent];
+    if (!parentNode) return;
+    
+    const isHoverActive = hoveredNode !== null || clickedNode !== null;
+    const inBranch = activeBranchNodes.has(n.id);
+    if (isHoverActive && !inBranch) return; // Only draw comets for active branch if something is hovered/clicked
+    
+    const accentCol = colorMap[n.color] || '#e8381a';
+    const hash = n.id.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+    const speed = n.type === 'category' ? 0.35 : 0.38;
+    let t = ((pulseTime * speed + hash * 2.0) % 100) / 100;
+    let px, py;
+    
+    if (n.type === 'category') {
+      px = parentNode.x + (n.x - parentNode.x) * t;
+      py = parentNode.y + (n.y - parentNode.y) * t;
+    } else {
+      const catNode = parentNode;
+      if (t < 0.45) {
+        const t1 = t / 0.45;
+        px = centerNode.x + (catNode.x - centerNode.x) * t1;
+        py = centerNode.y + (catNode.y - centerNode.y) * t1;
+      } else {
+        const t2 = (t - 0.45) / 0.55;
+        px = catNode.x + (n.x - catNode.x) * t2;
+        py = catNode.y + (n.y - catNode.y) * t2;
+      }
+    }
+    
+    ctx.beginPath();
+    ctx.arc(px, py, n.type === 'category' ? 3 : 2, 0, Math.PI * 2);
+    ctx.fillStyle = accentCol;
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = accentCol;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  });
+}
+
+function updateDOMElements(cx, cy) {
+  nodes.forEach(n => {
+    let el = null;
+    if (n.type === 'center') el = document.getElementById('cNode');
+    else el = n.element;
+    if (!el) return;
+    
+    el.style.transform = `translate(${n.x}px, ${n.y}px) translate(-50%, -50%)`;
+    
+    const isHoverActive = hoveredNode !== null || clickedNode !== null;
+    if (isHoverActive) {
+      const inBranch = activeBranchNodes.has(n.id);
+      el.style.opacity = inBranch ? '1' : '0.15';
+    } else {
+      el.style.opacity = '1';
+    }
+    
+    if (n.type === 'skill') {
+      const catNode = nodeMap[n.parent];
+      if (catNode) {
+        const dx = n.x - catNode.x;
+        const dy = n.y - catNode.y;
+        const dist = Math.hypot(dx, dy) || 1;
+        const ux = dx / dist;
+        const uy = dy / dist;
+        
+        const tx = -50 + ux * 50;
+        const ty = -50 + uy * 50;
+        const gap = window.innerWidth <= 768 ? 20 : 28; // Dynamic safe gap on mobile for premium readability and breathing room
+        const lx = ux * gap;
+        const ly = uy * gap;
+        
+        el.style.setProperty('--tx', `${tx}%`);
+        el.style.setProperty('--ty', `${ty}%`);
+        el.style.setProperty('--lx', `${lx}px`);
+        el.style.setProperty('--ly', `${ly}px`);
+      }
+    }
+  });
+}
+
+let isSkillsVisible = false;
+let animationFrameId = null;
+
+function tick() {
+  if (!isSkillsVisible) return;
+  const cx = wrapWidth / 2, cy = wrapHeight / 2;
+
+  updatePhysics(cx, cy);
+  drawConnections();
+  updateDOMElements(cx, cy);
+  animationFrameId = requestAnimationFrame(tick);
+}
+
+function drawLines() {
+  drawConnections();
+}
+
+function centerMobileScroll() {
+  const outer = document.getElementById('skills-outer-wrap');
+  if (outer) {
+    outer.scrollLeft = (wrapWidth - outer.clientWidth) / 2;
+    outer.scrollTop = (wrapHeight - outer.clientHeight) / 2;
+  }
+}
+
+function updateGuideText() {
+  const pillText = document.querySelector('.skills-guide-pill .guide-text');
+  if (pillText) {
+    if (window.innerWidth <= 768) {
+      pillText.textContent = 'Tap categories or drag nodes to explore my skills';
+    } else {
+      pillText.textContent = 'Hover over categories or drag nodes to explore my skills';
+    }
+  }
+}
+
+// Centering swipe and physics parameters
+function buildNeural() {
+  const wrap = document.getElementById('neuralWrap');
+  if (!wrap) return;
+  updateWrapDimensions(); // Cache dimensions on build
+  const cx = wrapWidth / 2, cy = wrapHeight / 2;
+  initPositions(cx, cy);
+  createDOMNodes();
+  setupCanvas();
+  setupGlobalDragEvents();
+  centerMobileScroll();
+  updateGuideText();
+}
+
 buildNeural();
+
+// Setup intersection observer to pause/play the animation tick loop
+const skillsSection = document.getElementById('skills');
+if (skillsSection) {
+  const skillsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (!isSkillsVisible) {
+          isSkillsVisible = true;
+          // Restart animation loop
+          animationFrameId = requestAnimationFrame(tick);
+        }
+      } else {
+        if (isSkillsVisible) {
+          isSkillsVisible = false;
+          // Stop animation loop to save battery and CPU/GPU
+          if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+          }
+        }
+      }
+    });
+  }, { threshold: 0.05 });
+  skillsObserver.observe(skillsSection);
+}
+
+setTimeout(centerMobileScroll, 200);
+
 window.addEventListener('resize', () => {
+  updateWrapDimensions(); // Update dimension cache on resize
+  resizeCanvas();
   buildNeural();
+  updateGuideText();
   if (window.innerWidth > 768) {
     closeMobile();
   }
 });
+
+// Drag to swipe scroll setup for mouse devices on swipe wrapper (supports both X and Y axis panning)
+(function() {
+  const outer = document.getElementById('skills-outer-wrap');
+  if (!outer) return;
+  let isDown = false;
+  let startX, startY;
+  let scrollLeft, scrollTop;
+  
+  outer.addEventListener('mousedown', (e) => {
+    // Only scroll if we are not clicking a node element
+    if (e.target.closest('.sk-node') || e.target.closest('.c-node')) return;
+    isDown = true;
+    startX = e.pageX - outer.offsetLeft;
+    startY = e.pageY - outer.offsetTop;
+    scrollLeft = outer.scrollLeft;
+    scrollTop = outer.scrollTop;
+  });
+  outer.addEventListener('mouseleave', () => {
+    isDown = false;
+  });
+  outer.addEventListener('mouseup', () => {
+    isDown = false;
+  });
+  outer.addEventListener('mousemove', (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - outer.offsetLeft;
+    const y = e.pageY - outer.offsetTop;
+    const walkX = (x - startX) * 1.5;
+    const walkY = (y - startY) * 1.5;
+    outer.scrollLeft = scrollLeft - walkX;
+    outer.scrollTop = scrollTop - walkY;
+  });
+
+  // Dynamic swipe hint fade-out on swipe interaction
+  const swipeHint = document.getElementById('swipeHint');
+  if (swipeHint && outer) {
+    const handleScroll = () => {
+      if (outer.scrollLeft > 25 || outer.scrollLeft < -25 || outer.scrollTop > 25 || outer.scrollTop < -25) {
+        swipeHint.classList.add('hidden');
+        // Once hidden, remove listener to ensure max performance
+        outer.removeEventListener('scroll', handleScroll);
+      }
+    };
+    outer.addEventListener('scroll', handleScroll, { passive: true });
+  }
+})();
 </script>
 </body>
 </html>
