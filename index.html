@@ -230,7 +230,7 @@ section{padding:8rem 5rem;}
 }
 #skills-outer-wrap::-webkit-scrollbar { display: none; }
 
-.neural-wrap{position:relative;width:1450px;height:1150px;margin-top:2rem;display:block;}
+.neural-wrap{position:relative;width:2000px;height:1600px;margin-top:2rem;display:block;transition:transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);transform-origin: center center;}
 
 /* centre node */
 .c-node{position:absolute;left:0;top:0;width:110px;height:110px;border-radius:50%;background:var(--txt);color:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;box-shadow:0 0 0 12px rgba(232,56,26,.12),0 0 0 24px rgba(232,56,26,.05);animation:cPulse 3s ease-in-out infinite;cursor:grab;user-select:none;transform-origin: center;will-change: transform, opacity;backface-visibility: hidden;-webkit-backface-visibility: hidden;}
@@ -572,8 +572,7 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
   #hero{padding:0 2rem 5rem;}
   section{padding:5rem 2rem;}
   #skills .inner-label{padding:0 2rem;}
-  #skills-outer-wrap { height: 550px; }
-  .neural-wrap { width: 1050px !important; height: 900px !important; }
+  #skills-outer-wrap { height: 550px !important; }
   .sk-bubble { width: 50px !important; height: 50px !important; }
   .sk-bubble img { width: 24px !important; height: 24px !important; }
   .c-node { width: 90px !important; height: 90px !important; }
@@ -706,6 +705,90 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
 [data-theme="dark"] .skills-guide-pill {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
+
+/* Floating High-Tech Zoom Controls */
+.skills-zoom-controls {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(19, 19, 28, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 100px !important;
+  padding: 0.4rem 0.6rem !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  z-index: 100;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35) !important;
+  user-select: none;
+  pointer-events: auto !important;
+}
+[data-theme="dark"] .skills-zoom-controls {
+  background: rgba(10, 10, 15, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+.skills-zoom-controls button {
+  background: none !important;
+  border: none !important;
+  color: #a4a4b5 !important;
+  font-family: var(--bebas) !important;
+  font-size: 1.15rem !important;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: background 0.25s, color 0.25s, transform 0.2s !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  outline: none !important;
+}
+.skills-zoom-controls button:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #ffffff !important;
+  transform: scale(1.1) !important;
+}
+.skills-zoom-controls button:active {
+  transform: scale(0.92) !important;
+}
+.skills-zoom-controls span {
+  color: #ffffff !important;
+  font-family: var(--pally) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  min-width: 38px !important;
+  text-align: center !important;
+  opacity: 0.95 !important;
+  letter-spacing: 0.02em !important;
+}
+#skillsZoomReset {
+  font-size: 0.92rem !important;
+}
+
+@media (max-width: 768px) {
+  .skills-zoom-controls {
+    bottom: 16px !important;
+    right: 16px !important;
+    padding: 0.35rem 0.5rem !important;
+    gap: 0.35rem !important;
+  }
+  .skills-zoom-controls button {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 1rem !important;
+  }
+  .skills-zoom-controls span {
+    font-size: 0.65rem !important;
+    min-width: 32px !important;
+  }
+  #skillsZoomReset {
+    font-size: 0.8rem !important;
+  }
+}
 .guide-dot {
   width: 6px;
   height: 6px;
@@ -727,6 +810,24 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
     font-size: 0.66rem;
     top: 1rem;
   }
+}
+
+/* ── SKILLS DYNAMIC AMBIENT GLOW BACKDROP ── */
+.skills-ambient-glow {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  opacity: 0;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), background 0.85s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#skills-outer-wrap, .skills-guide-pill, #skills .inner-label {
+  position: relative !important;
+  z-index: 2 !important;
 }
 </style>
 </head>
@@ -850,6 +951,9 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
 
 <!-- SKILLS — NEURAL GRAPH -->
 <section id="skills">
+  <!-- Dynamic Ambient Glow Layer -->
+  <div class="skills-ambient-glow" id="skillsAmbientGlow"></div>
+
   <div class="inner-label">
     <p class="s-label rv">Expertise</p>
     <h2 class="s-title rv d1">Skill Network</h2>
@@ -862,8 +966,8 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
   </div>
 
   <!-- Swipeable neural graph wrapper -->
-  <div id="skills-outer-wrap">
-    <div class="neural-wrap rv d2" id="neuralWrap">
+  <div id="skills-outer-wrap" class="rv d2">
+    <div class="neural-wrap" id="neuralWrap">
 
       <!-- Centre node -->
       <div class="c-node" id="cNode">
@@ -879,6 +983,14 @@ footer p{font-family:var(--pally);font-size:.7rem;color:rgba(243,237,229,.22);le
     <div class="swipe-arrow swipe-arrow-left">‹</div>
     <span class="swipe-text">Swipe to explore skills network</span>
     <div class="swipe-arrow swipe-arrow-right">›</div>
+  </div>
+
+  <!-- Sleek Floating Zoom Controls -->
+  <div class="skills-zoom-controls">
+    <button id="skillsZoomOut" title="Zoom Out" aria-label="Zoom Out">−</button>
+    <span id="skillsZoomLevel">100%</span>
+    <button id="skillsZoomIn" title="Zoom In" aria-label="Zoom In">+</button>
+    <button id="skillsZoomReset" title="Reset Zoom" aria-label="Reset Zoom">↺</button>
   </div>
 </section>
 
@@ -1144,7 +1256,6 @@ const skillNodes = [
   { id: 's0_1', type: 'skill', label: 'Multi-step Workflows', parent: 'cat0', color: 'r' },
   { id: 's0_2', type: 'skill', label: 'Tool Use & Function Calling', parent: 'cat0', color: 'r' },
   { id: 's0_3', type: 'skill', label: 'Local LLMs via Ollama', parent: 'cat0', color: 'r' },
-  { id: 's0_4', type: 'skill', label: 'Llama 3.1', parent: 'cat0', color: 'r' },
   { id: 's0_5', type: 'skill', label: 'Prompt Engineering', parent: 'cat0', color: 'r' },
   { id: 's0_6', type: 'skill', label: 'Claude API', parent: 'cat0', color: 'r' },
   { id: 's0_7', type: 'skill', label: 'Gemini API', parent: 'cat0', color: 'r' },
@@ -1223,6 +1334,7 @@ const activeBranchNodes = new Set();
 let wrapWidth = 1600;
 let wrapHeight = 1100;
 let colorMap = {};
+let zoomFactor = window.innerWidth <= 768 ? 0.42 : 1.0; // Start with 42% zoom on mobile to display the massive fanned-out graph elegantly without collisions
 
 function updateWrapDimensions() {
   const wrap = document.getElementById('neuralWrap');
@@ -1262,7 +1374,7 @@ skillNodes.forEach(sn => {
 });
 
 function initPositions(cx, cy) {
-  const scale = window.innerWidth <= 768 ? 0.78 : 1.0; // Scaled to 0.78 on mobile to widely separate hubs
+  const scale = 1.0; // Keep full wide coordinates scaling on all viewports to prevent mobile collisions!
   centerNode.x = cx;
   centerNode.y = cy;
   
@@ -1298,6 +1410,26 @@ function updateActiveBranch(n) {
   activeBranchNodes.add('center');
   
   const targetNode = n || clickedNode;
+  
+  // DYNAMIC AMBIENT BACKDROP GLOW HANDLER
+  const glowEl = document.getElementById('skillsAmbientGlow');
+  if (glowEl) {
+    if (targetNode) {
+      // Find the active branch's category color code
+      const colorKey = targetNode.color || (nodeMap[targetNode.parent] ? nodeMap[targetNode.parent].color : null);
+      if (colorKey && colorMap[colorKey]) {
+        const hexColor = colorMap[colorKey];
+        // Dynamic radial-gradient glow wash centered on the graph space
+        glowEl.style.background = `radial-gradient(circle at 50% 50%, ${hexColor}15 0%, transparent 68%)`;
+        glowEl.style.opacity = '1';
+      } else {
+        glowEl.style.opacity = '0';
+      }
+    } else {
+      glowEl.style.opacity = '0';
+    }
+  }
+
   if (!targetNode) return;
   
   if (targetNode.type === 'category') {
@@ -1487,7 +1619,7 @@ const kGravity = 0.0; // Gravity is unneeded since relative slot springs maintai
 const damping = 0.80; // Highly responsive slow-motion visual viscosity
 
 function updatePhysics(cx, cy) {
-  const scale = window.innerWidth <= 768 ? 0.78 : 1.0; // Scaled to 0.78 on mobile to match dynamic spreads
+  const scale = 1.0; // Keep full wide coordinates scaling on all viewports to prevent mobile collisions!
   nodes.forEach(n => {
     n.fx = 0; n.fy = 0;
   });
@@ -1560,16 +1692,14 @@ function updatePhysics(cx, cy) {
   });
 
   // Apply velocities & Capping limits to keep ALL nodes strictly inside bounds
-  const wrap = document.getElementById('neuralWrap');
-  const W = wrap.offsetWidth, H = wrap.offsetHeight;
   const margin = 40;
 
   nodes.forEach(n => {
     if (n.type === 'center' && !centerNode.dragged) return;
     if (n.dragged) {
       n.vx = 0; n.vy = 0;
-      n.x = Math.max(margin, Math.min(W - margin, n.x));
-      n.y = Math.max(margin, Math.min(H - margin, n.y));
+      n.x = Math.max(margin, Math.min(wrapWidth - margin, n.x));
+      n.y = Math.max(margin, Math.min(wrapHeight - margin, n.y));
       return;
     }
     
@@ -1579,8 +1709,8 @@ function updatePhysics(cx, cy) {
     n.y += n.vy;
     
     // Strict boundaries capping to prevent "orphan" color dots from floating off-screen
-    n.x = Math.max(margin, Math.min(W - margin, n.x));
-    n.y = Math.max(margin, Math.min(H - margin, n.y));
+    n.x = Math.max(margin, Math.min(wrapWidth - margin, n.x));
+    n.y = Math.max(margin, Math.min(wrapHeight - margin, n.y));
   });
 }
 
@@ -1765,6 +1895,9 @@ function buildNeural() {
   setupGlobalDragEvents();
   centerMobileScroll();
   updateGuideText();
+  if (typeof applyZoom === 'function') {
+    applyZoom(true); // Automatically apply cached zoom level on build and resize
+  }
 }
 
 buildNeural();
@@ -1806,6 +1939,110 @@ window.addEventListener('resize', () => {
     closeMobile();
   }
 });
+
+// ── SKILLS ZOOM ENGINE ──
+const minZoom = 0.35; // Lowered to 0.35 to support dynamic default mobile framing values
+const maxZoom = 2.0;
+
+function applyZoom(isImmediate = false) {
+  const wrap = document.getElementById('neuralWrap');
+  if (!wrap) return;
+  
+  if (isImmediate) {
+    wrap.style.transition = 'none';
+  } else {
+    wrap.style.transition = 'transform 0.38s cubic-bezier(0.16, 1, 0.3, 1)';
+  }
+  
+  wrap.style.transform = `scale(${zoomFactor})`;
+  
+  // Update indicator text
+  const levelText = document.getElementById('skillsZoomLevel');
+  if (levelText) {
+    levelText.textContent = `${Math.round(zoomFactor * 100)}%`;
+  }
+}
+
+// Button click handlers
+const zoomInBtn = document.getElementById('skillsZoomIn');
+const zoomOutBtn = document.getElementById('skillsZoomOut');
+const zoomResetBtn = document.getElementById('skillsZoomReset');
+
+if (zoomInBtn) {
+  zoomInBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    zoomFactor = Math.min(maxZoom, zoomFactor + 0.1);
+    applyZoom(false);
+  });
+}
+
+if (zoomOutBtn) {
+  zoomOutBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    zoomFactor = Math.max(minZoom, zoomFactor - 0.1);
+    applyZoom(false);
+  });
+}
+
+if (zoomResetBtn) {
+  zoomResetBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    zoomFactor = 1.0;
+    applyZoom(false);
+  });
+}
+
+// Pinch-to-zoom multi-touch handling for mobile viewports
+(function() {
+  const outer = document.getElementById('skills-outer-wrap');
+  if (!outer) return;
+  
+  let initialTouchDist = 0;
+  let initialZoom = 1.0;
+  
+  outer.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 2) {
+      initialTouchDist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      initialZoom = zoomFactor;
+    }
+  }, { passive: true });
+  
+  outer.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 2 && initialTouchDist > 0) {
+      // Prevent default browser zooming behavior
+      if (e.cancelable) e.preventDefault();
+      
+      const currentDist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      const factor = currentDist / initialTouchDist;
+      
+      // Calculate responsive new zoom level
+      let newZoom = initialZoom * factor;
+      
+      // Cap within limits
+      zoomFactor = Math.max(minZoom, Math.min(maxZoom, newZoom));
+      applyZoom(true); // Immediate update during continuous touch gestures (transition = none)
+    }
+  }, { passive: false });
+  
+  outer.addEventListener('touchend', (e) => {
+    if (e.touches.length < 2) {
+      initialTouchDist = 0;
+      // Re-enable smooth transition behaviors after touch ends
+      const wrap = document.getElementById('neuralWrap');
+      if (wrap) {
+        wrap.style.transition = 'transform 0.38s cubic-bezier(0.16, 1, 0.3, 1)';
+      }
+    }
+  }, { passive: true });
+})();
+
+applyZoom(true); // Apply initial zoom level immediately once the zoom engine is fully loaded
 
 // Drag to swipe scroll setup for mouse devices on swipe wrapper (supports both X and Y axis panning)
 (function() {
