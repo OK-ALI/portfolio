@@ -132,7 +132,8 @@ nav.scrolled{background:rgba(var(--bg-rgb),.93);backdrop-filter:blur(20px);-webk
 .ide-body{display:flex;padding:1.2rem;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;font-size:.76rem;line-height:1.5;color:var(--txt);letter-spacing:.02em;}
 .ide-line-numbers{color:var(--muted);opacity:.35;text-align:right;padding-right:1rem;user-select:none;border-right:1px solid rgba(255,255,255,.05);margin-right:1rem;line-height:1.5;}
 [data-theme="light"] .ide-line-numbers{border-right-color:rgba(16,16,24,.05);}
-.ide-code{margin:0;white-space:pre;overflow:hidden;flex:1;}
+.ide-code{margin:0;white-space:pre;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;flex:1;}
+.ide-code::-webkit-scrollbar{display:none;}
 .ide-code .kwd{color:var(--acc2);font-weight:700;}
 .ide-code .str{color:var(--acc3);}
 .ide-code .cls{color:var(--acc);}
